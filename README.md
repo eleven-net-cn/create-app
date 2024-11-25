@@ -1,2 +1,3 @@
-# create-library
-The library starter
+# app-starter
+
+Create app/library project from the specified repository. 
