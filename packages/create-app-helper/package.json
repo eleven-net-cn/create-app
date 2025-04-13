@@ -1,0 +1,42 @@
+{
+  "name": "@e.fe/create-app-helper",
+  "type": "module",
+  "version": "1.0.0-beta.0",
+  "description": "",
+  "author": "Eleven",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eleven-net-cn/create-app",
+    "directory": "packages/create-app-helper"
+  },
+  "bugs": {
+    "url": "https://github.com/eleven-net-cn/create-app/issues"
+  },
+  "keywords": [
+    "cli",
+    "create-app-helper"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "start": "tsup --watch",
+    "build": "tsup"
+  },
+  "dependencies": {
+    "istextorbinary": "^9.5.0",
+    "simple-git": "^3.27.0"
+  }
+}

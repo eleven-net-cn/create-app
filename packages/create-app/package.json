@@ -1,0 +1,61 @@
+{
+  "name": "@e.fe/create-app",
+  "type": "module",
+  "version": "1.0.0-beta.0",
+  "description": "",
+  "author": "Eleven",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eleven-net-cn/create-app",
+    "directory": "packages/create-app"
+  },
+  "bugs": {
+    "url": "https://github.com/eleven-net-cn/create-app/issues"
+  },
+  "keywords": [
+    "cli",
+    "create-app"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "create-app": "./bin/index.js"
+  },
+  "files": [
+    "bin",
+    "dist"
+  ],
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "scripts": {
+    "start": "tsup --watch",
+    "build": "tsup"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.10.0",
+    "@e.fe/create-app-helper": "workspace:*",
+    "@e.fe/template-library": "workspace:*",
+    "commander": "^13.1.0",
+    "ejs": "^3.1.10",
+    "istextorbinary": "^9.5.0",
+    "leven": "^4.0.0",
+    "mem-fs": "^4.1.2",
+    "mem-fs-editor": "^11.1.4",
+    "minimist": "^1.2.8",
+    "picocolors": "^1.1.1",
+    "prompts": "^2.4.2",
+    "simple-git": "^3.27.0"
+  },
+  "devDependencies": {
+    "@types/minimist": "^1.2.5",
+    "@types/prompts": "^2.4.9"
+  }
+}

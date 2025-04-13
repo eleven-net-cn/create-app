@@ -1,0 +1,41 @@
+{
+  "name": "@e.fe/template-library",
+  "type": "module",
+  "version": "1.0.0-beta.0",
+  "description": "The template of library",
+  "author": "Eleven",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eleven-net-cn/create-app",
+    "directory": "packages/template-library"
+  },
+  "bugs": {
+    "url": "https://github.com/eleven-net-cn/create-app/issues"
+  },
+  "keywords": [
+    "create-app",
+    "template library"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    },
+    "./package.json": "./package.json"
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "template"
+  ],
+  "scripts": {
+    "start": "tsup --watch",
+    "build": "tsup"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.10.0",
+    "@e.fe/create-app-helper": "workspace:*"
+  }
+}

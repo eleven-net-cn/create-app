@@ -1,0 +1,63 @@
+{
+  "type": "module",
+  "private": true,
+  "packageManager": "pnpm@9.15.4",
+  "author": "Eleven",
+  "homepage": "",
+  "scripts": {
+    "start:cli": "pnpm build -F @e.fe/template-* && pnpx tsx packages/create-app/src/bin.ts",
+    "start": "node scripts/start.js",
+    "watch": "turbo watch build",
+    "build": "turbo run build",
+    "release": "pnpm build && lerna publish",
+    "release:canary": "pnpm build && lerna publish --canary",
+    "lint": "eslint . --ignore-pattern 'packages/*/template/**/*'",
+    "lint:fix": "eslint . --fix --max-warnings=0 --no-warn-ignored --ignore-pattern 'packages/*/template/**/*'",
+    "lint:fix.template": "eslint packages/*/template/**/* --fix --max-warnings=0 --no-warn-ignored",
+    "lint:inspect": "pnpm dlx @eslint/config-inspector@latest",
+    "commit": "cz",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^3.16.0",
+    "@commitlint/cli": "^19.6.1",
+    "@commitlint/config-conventional": "^19.6.0",
+    "@tsconfig/node22": "^22.0.0",
+    "@types/node": "^22.10.10",
+    "chokidar": "^4.0.3",
+    "commitizen": "^4.3.1",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^9.20.0",
+    "husky": "^9.1.7",
+    "lerna": "^8.2.0",
+    "minimist": "^1.2.8",
+    "picocolors": "^1.1.1",
+    "tsup": "^8.3.5",
+    "turbo": "^2.5.0",
+    "typescript": "^5.7.3"
+  },
+  "lint-staged": {
+    "{packages,docs}/**/*.{js,jsx,json,css,scss,less,html,md,yml}": [
+      "pnpm lint:fix --max-warnings 0"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "cz-conventional-changelog"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "subject-case": [
+        0
+      ]
+    }
+  },
+  "volta": {
+    "node": "22.13.1",
+    "pnpm": "9.15.4"
+  }
+}

@@ -1,0 +1,24 @@
+{
+  "$schema": "node_modules/lerna/schemas/lerna-schema.json",
+  "version": "independent",
+  "packages": [
+    "packages/*"
+  ],
+  "npmClient": "pnpm",
+  "useNx": false,
+  "command": {
+    "version": {
+      "includeMergedTags": true,
+      "conventionalCommits": true,
+      "commitHooks": false
+    },
+    "publish": {
+      "access": "public"
+    }
+  },
+  "ignoreChanges": [
+    "docs/**",
+    "packages/**/dist/**"
+  ],
+  "changelog": true
+}

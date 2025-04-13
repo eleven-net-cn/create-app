@@ -1,0 +1,207 @@
+import type { CreateOptions } from './types';
+import { existsSync, mkdirSync, readFileSync, rmdirSync, unlinkSync, writeFileSync } from 'node:fs';
+import { EOL } from 'node:os';
+import { join, resolve } from 'node:path';
+
+import {
+  GIT_USER_EMAIL,
+  GIT_USER_NAME,
+  NODE_VERSION,
+  PACKAGE_MANAGER,
+  postOrderDirectoryTraverse,
+  type RenderFn,
+  type TemplateFnReturnType,
+  type TplContext,
+  tryGitCommit,
+  tryGitInit,
+} from '@e.fe/create-app-helper';
+import ejs from 'ejs';
+import { create as createMemFs } from 'mem-fs';
+import { create as createEditor } from 'mem-fs-editor';
+import colors from 'picocolors';
+
+import { argv } from './argv';
+import { Template } from './template';
+import renderTemplate from './renderTemplate';
+
+export async function create(options: CreateOptions) {
+  // TODO: 检测限制 nodejs 版本
+
+  const {
+    mode,
+    cwd: _cwd,
+    projectName,
+    projectDesc = '',
+    shouldOverwrite = false,
+    template = Template.Library,
+    packageManager = 'pnpm',
+    prompts,
+  } = options;
+
+  if (!projectName) return;
+
+  const isDebug = mode === 'debug';
+  const cwd = _cwd || process.cwd();
+  const projectRootDir = resolve(cwd, projectName);
+
+  let templatePackage = template;
+
+  const store = createMemFs();
+  const memFs = createEditor(store);
+
+  const pkgJson: Record<string, unknown> = {
+    author: `${GIT_USER_NAME} <${GIT_USER_EMAIL}>`,
+    maintainers: [`${GIT_USER_NAME} <${GIT_USER_EMAIL}>`],
+    description: projectDesc,
+    volta: {
+      node: NODE_VERSION,
+      [packageManager]: PACKAGE_MANAGER[packageManager],
+    },
+  };
+
+  // INFO: isDebug will be true when developing locally, should skip to empty the target dir.
+  if (!isDebug && existsSync(projectRootDir) && shouldOverwrite) {
+    postOrderDirectoryTraverse(
+      projectRootDir,
+      dir => rmdirSync(dir),
+      file => unlinkSync(file),
+    );
+  } else if (!existsSync(projectRootDir)) {
+    mkdirSync(projectRootDir, { recursive: true });
+  }
+  writeFileSync(join(projectRootDir, 'package.json'), JSON.stringify(pkgJson, null, 2) + EOL);
+
+  // Support file: protocol, work locally
+  if (templatePackage.match(/^file:/)) {
+    // eslint-disable-next-line regexp/no-useless-quantifier
+    const localTemplatePath = resolve(cwd, templatePackage.match(/^file:(.*)?$/)?.[1] ?? '');
+    const { module, main } = JSON.parse(readFileSync(resolve(localTemplatePath, 'package.json'), 'utf-8'));
+    const entry = module || main || 'index.js';
+    templatePackage = resolve(localTemplatePath, entry);
+  }
+
+  const callbacks = []; // will be executed after all of the template files are created
+
+  const render: RenderFn = (...args) => {
+    const [args1] = args;
+
+    if (Array.isArray(args1)) {
+      args1.forEach(item => {
+        if (typeof item === 'string') {
+          renderTemplate({
+            rootDir: projectRootDir,
+            src: item,
+            dest: projectRootDir,
+            callbacks,
+            data: { ...options },
+            memFs,
+          });
+        } else {
+          const { src, dest, data = {}, ...restRenderOptions } = item || {};
+          renderTemplate({
+            ...restRenderOptions,
+            rootDir: projectRootDir,
+            src,
+            dest: dest ?? projectRootDir,
+            callbacks,
+            data: { ...options, ...data },
+            memFs,
+          });
+        }
+      });
+    } else if (typeof args1 === 'object') {
+      const { src, dest, data = {}, ...restRenderOptions } = args1 ?? {};
+      renderTemplate({
+        ...restRenderOptions,
+        rootDir: projectRootDir,
+        src,
+        dest: dest ?? projectRootDir,
+        callbacks,
+        data: { ...options, ...data },
+        memFs,
+      });
+    } else {
+      const [src, data = {}, renderOptions = {}] = args;
+      const { dest, ...restRenderOptions } = renderOptions;
+      renderTemplate({
+        ...restRenderOptions,
+        rootDir: projectRootDir,
+        src,
+        dest: dest ?? projectRootDir,
+        callbacks,
+        data: { ...options, ...data },
+        memFs,
+      });
+    }
+  };
+
+  // TODO: 判断本地不存在，尝试安装到本地再执行
+  const { default: tplFn } = await import(templatePackage);
+
+  if (typeof tplFn !== 'function') {
+    throw new TypeError(`${templatePackage} must to export a render function`);
+  }
+
+  const tplFnRes: TemplateFnReturnType = await tplFn({
+    cwd,
+    rootDir: projectRootDir,
+    projectName,
+    argv,
+    options,
+    render,
+    prompts,
+  } satisfies TplContext<CreateOptions>) ?? {};
+
+  // An external data store for callbacks to share data
+  const ejsDataStore = {};
+  // Process callbacks
+  for (const cb of callbacks) {
+    await cb({
+      dataStore: ejsDataStore,
+      options: {
+        ...options,
+        ...tplFnRes,
+        prompts: tplFnRes?.prompts ?? {},
+      },
+    });
+  }
+
+  // EJS template rendering
+  store.each(file => {
+    if (file.path.endsWith('.ejs')) {
+      const template = memFs.read(file.path);
+      const dest = file.path.replace(/\.ejs$/, '');
+      const content = ejs.render(template, ejsDataStore[dest]);
+
+      memFs.delete(file.path);
+      memFs.write(dest, content);
+    }
+  });
+
+  // TODO: AST 解析部分文件依赖，合并、去重
+
+  await memFs.commit();
+
+  if (typeof tplFnRes?.afterRender === 'function') {
+    await tplFnRes.afterRender();
+  }
+
+  // Git Init
+  let initializedGit = false;
+  if (tryGitInit('main', { cwd: projectRootDir })) {
+    initializedGit = true;
+  }
+  // Git commit
+  if (initializedGit) {
+    tryGitCommit(projectRootDir, 'chore: Initialize using @e.fe/create-app', { cwd: projectRootDir });
+  }
+
+  console.log();
+  console.log(`Success! Created ${colors.green(projectName)} at ${colors.green(projectRootDir)}`);
+  console.log();
+  console.log('Now you can start the development:');
+  console.log();
+  console.log(`  ${colors.cyan('cd')} ${colors.green(projectName)}`);
+  console.log(`  ${colors.cyan('npm start')}`);
+  console.log();
+}
