@@ -86,7 +86,7 @@ export async function create(options: CreateOptions) {
     const [args1] = args;
 
     if (Array.isArray(args1)) {
-      args1.forEach(item => {
+      args1.filter(Boolean).forEach(item => {
         if (typeof item === 'string') {
           renderTemplate({
             rootDir: projectRootDir,
