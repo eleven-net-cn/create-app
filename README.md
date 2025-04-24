@@ -1,8 +1,10 @@
 # create-app
 
-Create app/library from the specified repository.
+An efficient modular template management scaffold.
 
-## Engines
+## Contribution
+
+### Engines
 
 1. Make sure [Volta](https://volta.sh/) is installed, it will automatically switch development tools (NodeJS, pnpm) versions
 
@@ -20,7 +22,7 @@ Create app/library from the specified repository.
 
    > Note: After modifying the configuration, restart the terminal or run `source ~/.zshrc` to apply the changes.
 
-## Command
+### Command
 
 ```zsh
 # Testing CLI

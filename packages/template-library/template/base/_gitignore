@@ -1,0 +1,19 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+node_modules
+
+npm-debug.log*
+*.log
+.idea
+.DS_Store
+
+# dest dir
+/dist
+
+# misc
+.DS_Store
+
+# jest test coverage
+coverage
+__snapshots__
