@@ -5,5 +5,8 @@
   },
   "[gitignore]": {
     "editor.formatOnSave": false
-  }
+  },
+  "cSpell.words": [
+    "rsbuild"
+  ]
 }

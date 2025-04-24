@@ -146,6 +146,7 @@ export async function create(options: CreateOptions) {
     cwd,
     rootDir: projectRootDir,
     projectName,
+    projectDesc,
     argv,
     options,
     render,

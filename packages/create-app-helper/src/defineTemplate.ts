@@ -38,6 +38,8 @@ export interface TplContext<Options = Record<string, unknown>> {
   rootDir: string;
   /** The name of the generated app */
   projectName: string;
+  /** The description of the generated app */
+  projectDesc: string;
   /** Command line arguments from user input */
   argv: Record<string, any>;
   /** User prompt answers, only available in prompts */

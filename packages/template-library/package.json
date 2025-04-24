@@ -36,6 +36,7 @@
   },
   "dependencies": {
     "@clack/prompts": "^0.10.0",
-    "@e.fe/create-app-helper": "workspace:*"
+    "@e.fe/create-app-helper": "workspace:*",
+    "camelcase": "^8.0.0"
   }
 }

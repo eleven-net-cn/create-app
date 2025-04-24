@@ -1,0 +1,3 @@
+# <%- scopeName %>
+
+<%- projectDesc %>
