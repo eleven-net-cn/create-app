@@ -4,18 +4,36 @@ import { pathToFileURL } from 'node:url';
 
 import type { MemFsEditor } from 'mem-fs-editor';
 import ejs from 'ejs';
-import { deepMerge, isEjsProcessable, sortDependencies } from '@e.fe/create-app-helper';
+import { deepMerge, isEjsProcessable, sortDependencies } from './helper';
 // @ts-expect-error no types
 import { isText } from 'istextorbinary';
 
-interface Options {
+export interface Options<Data = Record<string, unknown>> {
   rootDir: string;
   src: string;
   dest: string;
+  data: Data;
   callbacks: ((dataSource: any) => Promise<void>)[];
-  data: Record<string, unknown>;
   memFs: MemFsEditor;
+  /**
+   * Files that should be appended to existing files, relative to the root dir or absolute path
+   *
+   * Default:
+   * - `.gitignore`
+   *
+   * If filename starts with `_`, please use `.filename` instead.
+   *
+   * e.g. `_gitignore` -> `.gitignore`
+   */
   toAppend?: string[];
+  /**
+   * Files that should be merged with existing files, relative to the root dir or absolute path
+   *
+   * Default:
+   * - `package.json`
+   * - `.vscode/extensions.json`
+   * - `.vscode/settings.json`
+   */
   toMerge?: string[];
 }
 
@@ -29,7 +47,7 @@ interface Options {
  *   - If the file has a `.ejs` suffix, it will be rendered with EJS at the end
  *   - If the file has a `.data.mjs` suffix, it will be exported as a function and called at the end, provide the data to the EJS file template
  */
-export default function renderTemplate(options: Options) {
+export default function renderTemplate<Data = Record<string, unknown>>(options: Options<Data>): void {
   const {
     rootDir,
     src,
@@ -61,7 +79,17 @@ export default function renderTemplate(options: Options) {
   // If the.ejs suffix, the conversion is traversed at the end
   const shouldEjsTransform = !filename.endsWith('.ejs') && isEjsProcessable(src);
 
-  const toAbsolutePath = (arr: string[]) => arr.map(item => path.isAbsolute(item) ? item : path.join(rootDir, item));
+  const toAbsolutePath = (arr: string[]) => arr.map(item => {
+    if (path.isAbsolute(item)) {
+      return item;
+    }
+
+    if (!rootDir) {
+      throw new Error('rootDir is required');
+    }
+
+    return path.join(rootDir, item);
+  });
 
   const toMergeJson = toAbsolutePath([
     'package.json',
@@ -72,7 +100,6 @@ export default function renderTemplate(options: Options) {
   const toSortJson = toAbsolutePath(['package.json']);
   const toAppend = toAbsolutePath([
     '.gitignore',
-    'env.d.ts',
     ...toAppendExtra,
   ]);
 

@@ -1,21 +1,20 @@
 {
-  "name": "@e.fe/create-app-helper",
+  "name": "@e.fe/template-renderer",
   "type": "module",
   "version": "1.0.0-beta.0",
-  "description": "",
+  "description": "Generate files from template",
   "author": "Eleven",
   "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/eleven-net-cn/create-app",
-    "directory": "packages/create-app-helper"
+    "directory": "packages/template-renderer"
   },
   "bugs": {
     "url": "https://github.com/eleven-net-cn/create-app/issues"
   },
   "keywords": [
-    "cli",
-    "create-app-helper"
+    "template renderer"
   ],
   "exports": {
     ".": {
@@ -28,14 +27,14 @@
   "files": [
     "dist"
   ],
-  "engines": {
-    "node": ">=16.0.0"
-  },
   "scripts": {
     "start": "tsup --watch",
     "build": "tsup"
   },
   "dependencies": {
-    "simple-git": "^3.27.0"
+    "ejs": "^3.1.10",
+    "istextorbinary": "^9.5.0",
+    "mem-fs": "^4.1.2",
+    "mem-fs-editor": "^11.1.4"
   }
 }

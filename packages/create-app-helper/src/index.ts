@@ -10,6 +10,4 @@ export * from './formatCodeBlock';
 
 export * from './git';
 
-export { default as isEjsProcessable } from './isEjsProcessable';
-
 export * from './utils';

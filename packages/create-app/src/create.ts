@@ -15,14 +15,11 @@ import {
   tryGitCommit,
   tryGitInit,
 } from '@e.fe/create-app-helper';
-import ejs from 'ejs';
-import { create as createMemFs } from 'mem-fs';
-import { create as createEditor } from 'mem-fs-editor';
 import colors from 'picocolors';
+import { commit, render2Memory } from '@e.fe/template-renderer';
 
 import { argv } from './argv';
 import { Template } from './template';
-import renderTemplate from './renderTemplate';
 
 export async function create(options: CreateOptions) {
   // TODO: 检测限制 nodejs 版本
@@ -45,9 +42,6 @@ export async function create(options: CreateOptions) {
   const projectRootDir = resolve(cwd, projectName);
 
   let templatePackage = template;
-
-  const store = createMemFs();
-  const memFs = createEditor(store);
 
   const pkgJson: Record<string, unknown> = {
     author: `${GIT_USER_NAME} <${GIT_USER_EMAIL}>`,
@@ -80,57 +74,47 @@ export async function create(options: CreateOptions) {
     templatePackage = resolve(localTemplatePath, entry);
   }
 
-  const callbacks = []; // will be executed after all of the template files are created
-
   const render: RenderFn = (...args) => {
     const [args1] = args;
 
     if (Array.isArray(args1)) {
       args1.filter(Boolean).forEach(item => {
         if (typeof item === 'string') {
-          renderTemplate({
+          render2Memory({
             rootDir: projectRootDir,
             src: item,
             dest: projectRootDir,
-            callbacks,
             data: { ...options },
-            memFs,
           });
         } else {
           const { src, dest, data = {}, ...restRenderOptions } = item || {};
-          renderTemplate({
+          render2Memory({
             ...restRenderOptions,
             rootDir: projectRootDir,
             src,
             dest: dest ?? projectRootDir,
-            callbacks,
             data: { ...options, ...data },
-            memFs,
           });
         }
       });
     } else if (typeof args1 === 'object') {
       const { src, dest, data = {}, ...restRenderOptions } = args1 ?? {};
-      renderTemplate({
+      render2Memory({
         ...restRenderOptions,
         rootDir: projectRootDir,
         src,
         dest: dest ?? projectRootDir,
-        callbacks,
         data: { ...options, ...data },
-        memFs,
       });
     } else {
       const [src, data = {}, renderOptions = {}] = args;
       const { dest, ...restRenderOptions } = renderOptions;
-      renderTemplate({
+      render2Memory({
         ...restRenderOptions,
         rootDir: projectRootDir,
         src,
         dest: dest ?? projectRootDir,
-        callbacks,
         data: { ...options, ...data },
-        memFs,
       });
     }
   };
@@ -153,35 +137,13 @@ export async function create(options: CreateOptions) {
     prompts,
   } satisfies TplContext<CreateOptions>) ?? {};
 
-  // An external data store for callbacks to share data
-  const ejsDataStore = {};
-  // Process callbacks
-  for (const cb of callbacks) {
-    await cb({
-      dataStore: ejsDataStore,
-      options: {
-        ...options,
-        ...tplFnRes,
-        prompts: tplFnRes?.prompts ?? {},
-      },
-    });
-  }
-
-  // EJS template rendering
-  store.each(file => {
-    if (file.path.endsWith('.ejs')) {
-      const template = memFs.read(file.path);
-      const dest = file.path.replace(/\.ejs$/, '');
-      const content = ejs.render(template, ejsDataStore[dest]);
-
-      memFs.delete(file.path);
-      memFs.write(dest, content);
-    }
+  await commit({
+    options: {
+      ...options,
+      tplFnRes,
+      prompts: tplFnRes?.prompts ?? {},
+    },
   });
-
-  // TODO: AST 解析部分文件依赖，合并、去重
-
-  await memFs.commit();
 
   if (typeof tplFnRes?.afterRender === 'function') {
     await tplFnRes.afterRender();
