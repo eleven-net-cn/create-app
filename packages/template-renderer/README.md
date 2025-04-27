@@ -34,7 +34,7 @@ import { commit, render2memory } from '@e.fe/template-renderer';
 const templateDir = resolve(dirname(fileURLToPath(import.meta.url)), '../template');
 const resolveDir = (dir: string) => resolve(templateDir, dir);
 
-// Render templates to disk
+// Render templates in memory
 render2memory([
   {
     src: resolveDir('template/base'),
@@ -47,6 +47,7 @@ render2memory([
 
 // do anything...
 
+// Commit changes to disk
 await commit();
 ```
 
