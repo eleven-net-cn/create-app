@@ -9,7 +9,7 @@ import type { TemplatePrompts } from './types';
 const prompts = () => group(
   {
     type: () => select({
-      message: '请选择：',
+      message: 'Please select:',
       initialValue: 'unbuild',
       options: [
         { label: 'unbuild', value: 'unbuild', hint: '' },
@@ -20,13 +20,13 @@ const prompts = () => group(
       ],
     }),
     scopeName: () => text({
-      message: '请输入包名（scopeName，示例：@scope/xxx）',
+      message: 'Please enter package name (scopeName, example: @scope/xxx)',
       validate: value => {
         if (!value) {
-          return '请输入包名';
+          return 'Please enter package name';
         }
         if (!/^@[^/]+\/[^/]+$/.test(value)) {
-          return '包名格式不正确';
+          return 'Invalid package name format';
         }
       },
     }),

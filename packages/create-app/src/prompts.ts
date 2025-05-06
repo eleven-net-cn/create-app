@@ -13,14 +13,14 @@ export default () =>
     {
       projectName: () =>
         text({
-          message: `请输入项目名称${colors.gray('（小写字母、数字，中划线连接）')}：`,
+          message: `Please enter project name${colors.gray(' (lowercase letters, numbers, connected by hyphens)')}:`,
           validate(value: string) {
-            // 小写字母、数字，中划线连接
+            // lowercase letters, numbers, connected by hyphens
             // eslint-disable-next-line regexp/no-unused-capturing-group
             const regComponentName = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 
             if (!regComponentName.test(value)) {
-              return colors.yellow(`格式错误${colors.cyan('（小写字母、数字，中划线连接）')}`);
+              return colors.yellow(`Invalid format${colors.cyan(' (lowercase letters, numbers, connected by hyphens)')}`);
             }
           },
         }),
@@ -32,15 +32,15 @@ export default () =>
         if (argv.overwrite !== undefined) return argv.overwrite;
 
         return confirm({
-          message: `已存在 ${colors.green(projectRootDir)}，是否覆盖？`,
+          message: `${colors.green(projectRootDir)} already exists, overwrite?`,
           initialValue: false,
-          active: `是（${colors.yellow(
-            `${colors.bold('注意：')}已存在的目录 ${colors.green(basename(projectRootDir))} 会被清空覆盖！`,
-          )}）`,
-          inactive: '否',
+          active: `Yes (${colors.yellow(
+            `${colors.bold('Note:')} Existing directory ${colors.green(basename(projectRootDir))} will be cleared and overwritten!`,
+          )})`,
+          inactive: 'No',
         }).then(overwrite => {
           if (!overwrite) {
-            cancel(colors.yellow('请输入其它项目名称'));
+            cancel(colors.yellow('Please enter a different project name'));
             process.exit(0);
           }
           return overwrite;
@@ -48,7 +48,7 @@ export default () =>
       },
       projectDesc: () =>
         text({
-          message: `请输入项目描述${colors.gray('（非必填，Enter 跳过）')}：`,
+          message: `Please enter project description${colors.gray(' (optional, press Enter to skip)')}:`,
           initialValue: '',
         }),
       template: async () => {
@@ -59,7 +59,7 @@ export default () =>
         if (templates.length <= 1) return null;
 
         return select({
-          message: '请选择：',
+          message: 'Please select:',
           initialValue: 'library',
           options: templates,
         });
@@ -70,7 +70,7 @@ export default () =>
         }
 
         return select<PackageManager>({
-          message: '请选择包管理器：',
+          message: 'Please select package manager:',
           initialValue: 'pnpm',
           options: [
             {
