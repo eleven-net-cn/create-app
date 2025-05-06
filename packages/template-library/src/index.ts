@@ -3,6 +3,7 @@ import { fileURLToPath } from 'node:url';
 
 import { group, select, text } from '@clack/prompts';
 import { defineTemplate } from '@e.fe/create-app-helper';
+import renderStandard from '@e.fe/template-standard';
 import camelcase from 'camelcase';
 import type { TemplatePrompts } from './types';
 
@@ -64,9 +65,17 @@ export default defineTemplate(async context => {
         projectDesc,
       },
     },
-    {
-      src: resolveDir('standard'),
-      data: {},
-    },
   ]);
+
+  await renderStandard({
+    ...context,
+    prompts: {
+      features: [
+        'eslint',
+        'commitlint',
+        'commitizen',
+        'lint-staged',
+      ],
+    },
+  });
 });

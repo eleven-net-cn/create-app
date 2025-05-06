@@ -1,11 +1,8 @@
 import antfu from '@antfu/eslint-config';
 
 export default antfu({
-  type: 'lib',
-  ignores: [
-    '.playground/',
-    'packages/template-renderer//README.md',
-  ],
+  type: '<%= appType %>',
+  ignores: [],
   rules: {
     'style/semi': ['error', 'always'],
     'style/quotes': ['error', 'single', {

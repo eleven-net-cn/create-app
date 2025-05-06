@@ -1,27 +1,26 @@
 {
-  "name": "@e.fe/template-library",
+  "name": "@e.fe/template-standard",
   "type": "module",
   "version": "1.0.0-beta.0",
-  "description": "The template of library",
+  "description": "",
   "author": "Eleven",
   "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/eleven-net-cn/create-app",
-    "directory": "packages/template-library"
+    "directory": "packages/template-standard"
   },
   "bugs": {
     "url": "https://github.com/eleven-net-cn/create-app/issues"
   },
   "keywords": [
     "create-app",
-    "template library"
+    "template standard"
   ],
   "exports": {
     ".": {
       "import": "./dist/index.js"
-    },
-    "./package.json": "./package.json"
+    }
   },
   "main": "./dist/index.js",
   "module": "./dist/index.js",
@@ -36,8 +35,6 @@
   },
   "dependencies": {
     "@clack/prompts": "^0.10.0",
-    "@e.fe/create-app-helper": "workspace:*",
-    "@e.fe/template-standard": "workspace:*",
-    "camelcase": "^8.0.0"
+    "@e.fe/create-app-helper": "workspace:*"
   }
 }

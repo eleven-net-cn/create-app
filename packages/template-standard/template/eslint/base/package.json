@@ -1,0 +1,10 @@
+{
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix --max-warnings=0 --no-warn-ignored",
+    "lint:inspect": "npx @eslint/config-inspector@latest"
+  },
+  "devDependencies": {
+    "eslint": "^9.20.0"
+  }
+}

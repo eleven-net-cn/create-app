@@ -1,0 +1,7 @@
+{
+  "lint-staged": {
+    "{src}/**/*.{js,jsx,json,css,scss,less,html,md,yml}": [
+      "eslint . --fix --max-warnings=0 --no-warn-ignored"
+    ]
+  }
+}

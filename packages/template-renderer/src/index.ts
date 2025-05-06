@@ -61,7 +61,7 @@ export function render2Memory(...args: [Options[]] | [Options] | [string, Record
       });
     });
   } else if (typeof args1 === 'object') {
-    const {  dest, rootDir } = args1 ?? {};
+    const { dest, rootDir } = args1 ?? {};
 
     renderTemplate({
       ..._options,
@@ -71,7 +71,6 @@ export function render2Memory(...args: [Options[]] | [Options] | [string, Record
   } else {
     const [src, data = {}, options = {}] = args as [string, Record<string, unknown>, Omit<Options, 'src' | 'data'>];
     const { dest, rootDir, ...restOptions } = options as Omit<Options, 'src' | 'data'>;
-
 
     renderTemplate({
       ..._options,
