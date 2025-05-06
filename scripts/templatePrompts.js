@@ -1,4 +1,4 @@
 export default {
-  type: 'unbuild',
+  type: 'rollup',
   scopeName: '@e.fe/xxx',
 };

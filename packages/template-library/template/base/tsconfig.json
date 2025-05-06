@@ -2,8 +2,12 @@
   "compilerOptions": {
     "target": "ESNext",
     "moduleDetection": "force",
+    "baseUrl": ".",
     "module": "Preserve",
     "moduleResolution": "bundler",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "resolveJsonModule": true,
     "allowImportingTsExtensions": true,
     "allowJs": true,
@@ -16,5 +20,6 @@
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "verbatimModuleSyntax": true
-  }
+  },
+  "include": ["src"]
 }

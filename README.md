@@ -1,6 +1,6 @@
 # create-app
 
-An efficient modular template management scaffold.
+An efficient modular template management scaffold
 
 ## Contribution
 
