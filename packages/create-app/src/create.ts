@@ -40,6 +40,7 @@ export async function create(options: CreateOptions) {
   const isDebug = mode === 'debug';
   const cwd = _cwd || process.cwd();
   const projectRootDir = resolve(cwd, projectName);
+  const pkgJsonPath = join(projectRootDir, 'package.json');
 
   let templatePackage = template;
 
@@ -63,7 +64,10 @@ export async function create(options: CreateOptions) {
   } else if (!existsSync(projectRootDir)) {
     mkdirSync(projectRootDir, { recursive: true });
   }
-  writeFileSync(join(projectRootDir, 'package.json'), JSON.stringify(pkgJson, null, 2) + EOL);
+
+  if (!existsSync(pkgJsonPath)) {
+    writeFileSync(pkgJsonPath, JSON.stringify(pkgJson, null, 2) + EOL);
+  }
 
   // Support file: protocol, work locally
   if (templatePackage.match(/^file:/)) {

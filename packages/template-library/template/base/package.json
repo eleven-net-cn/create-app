@@ -1,10 +1,44 @@
 {
   "name": "<%= scopeName %>",
+  "type": "module",
   "version": "1.0.0",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
+  "description": "<%= projectDesc %>",
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "./dist/*",
+        "./*"
+      ]
+    }
+  },
+  "main": "dist/index.cjs",
+  "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist"
-  ]
+  ],
+  "scripts": {
+    "test": "vitest dev",
+    "test:coverage": "npm run lint:types && vitest run --coverage",
+    "release": "npm run test && changelogen --release && npm publish && git push --follow-tags",
+    "lint:types": "tsc --noEmit --skipLibCheck",
+    "prepublishOnly": "npm run build"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^22.13.13",
+    "@vitest/coverage-v8": "^3.0.9",
+    "changelogen": "^0.6.1",
+    "typescript": "^5.8.3",
+    "vitest": "^3.0.9"
+  }
 }

@@ -18,8 +18,9 @@ export interface Options<Data = Record<string, unknown>> extends Pick<RenderTemp
 }
 
 const store = createMemFs();
-const memFs = createEditor(store);
 const callbacks = []; // will be executed after all of the template files are created
+
+export const memFs = createEditor(store);
 
 /**
  * Render templates to disk

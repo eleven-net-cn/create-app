@@ -1,4 +1,4 @@
 export default {
-  type: 'tsup',
+  type: 'unbuild',
   scopeName: '@e.fe/xxx',
 };

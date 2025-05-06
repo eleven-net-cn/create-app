@@ -1,0 +1,17 @@
+{
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "require": "./dist/index.cjs",
+      "import": "./dist/index.mjs"
+    }
+  },
+  "scripts": {
+    "start": "unbuild --watch",
+    "build": "unbuild"
+  },
+  "devDependencies": {
+    "unbuild": "^3.5.0"
+  }
+}

@@ -13,11 +13,11 @@ const prompts = () => group(
       message: 'Please select:',
       initialValue: 'unbuild',
       options: [
-        { label: 'unbuild', value: 'unbuild', hint: '' },
-        { label: 'vite', value: 'vite' },
-        { label: 'tsup', value: 'tsup' },
-        { label: 'rsbuild', value: 'rsbuild' },
-        { label: 'esbuild', value: 'esbuild' },
+        { label: 'unbuild', value: 'unbuild', hint: 'https://github.com/unjs/unbuild' },
+        { label: 'vite', value: 'vite', hint: 'https://vite.dev/' },
+        { label: 'tsup', value: 'tsup', hint: 'https://github.com/egoist/tsup' },
+        { label: 'rsbuild', value: 'rsbuild', hint: 'https://rsbuild.dev/' },
+        { label: 'esbuild', value: 'esbuild', hint: 'https://esbuild.github.io/' },
       ],
     }),
     scopeName: () => text({
@@ -40,6 +40,7 @@ const prompts = () => group(
 );
 
 export default defineTemplate(async context => {
+  console.log('context: ', context);
   const { prompts: injectPrompts, render, projectDesc } = context;
   const { type, scopeName } = (injectPrompts as unknown as TemplatePrompts) ?? await prompts();
 
@@ -55,6 +56,7 @@ export default defineTemplate(async context => {
       data: {
         scopeName,
         globalName,
+        projectDesc,
       },
     },
     {
@@ -62,7 +64,6 @@ export default defineTemplate(async context => {
       data: {
         scopeName,
         globalName,
-        projectDesc,
       },
     },
   ]);
