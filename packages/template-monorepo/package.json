@@ -1,21 +1,21 @@
 {
-  "name": "@e.fe/create-app",
+  "name": "@e.fe/template-monorepo",
   "type": "module",
-  "version": "1.0.0-beta.5",
-  "description": "",
+  "version": "1.0.0-beta.0",
+  "description": "The template of monorepo (packages/apps)",
   "author": "Eleven",
   "license": "ISC",
   "repository": {
     "type": "git",
     "url": "https://github.com/eleven-net-cn/create-app",
-    "directory": "packages/create-app"
+    "directory": "packages/template-monorepo"
   },
   "bugs": {
     "url": "https://github.com/eleven-net-cn/create-app/issues"
   },
   "keywords": [
-    "cli",
-    "create-app"
+    "create-app",
+    "template monorepo"
   ],
   "exports": {
     ".": {
@@ -25,16 +25,10 @@
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
-  "bin": {
-    "create-app": "./bin/index.js"
-  },
   "files": [
-    "bin",
-    "dist"
+    "dist",
+    "template"
   ],
-  "engines": {
-    "node": ">=16.0.0"
-  },
   "scripts": {
     "start": "tsup --watch",
     "build": "tsup"
@@ -42,19 +36,7 @@
   "dependencies": {
     "@clack/prompts": "^0.10.0",
     "@e.fe/create-app-helper": "workspace:*",
-    "@e.fe/template-library": "workspace:*",
-    "@e.fe/template-monorepo": "workspace:*",
-    "@e.fe/template-renderer": "workspace:*",
-    "commander": "^13.1.0",
-    "leven": "^4.0.0",
-    "minimist": "^1.2.8",
-    "picocolors": "^1.1.1",
-    "prompts": "^2.4.2",
-    "simple-git": "^3.27.0"
-  },
-  "devDependencies": {
-    "@types/minimist": "^1.2.5",
-    "@types/prompts": "^2.4.9"
+    "@e.fe/template-standard": "workspace:*"
   },
   "publishConfig": {
     "access": "public"

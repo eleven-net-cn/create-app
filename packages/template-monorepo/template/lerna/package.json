@@ -1,0 +1,8 @@
+{
+  "scripts": {
+    "release": "lerna publish"
+  },
+  "devDependencies": {
+    "lerna": "^8.2.2"
+  }
+}
