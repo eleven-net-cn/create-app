@@ -88,6 +88,10 @@ export default () =>
           ],
         });
       },
+      installNow: async () => confirm({
+        message: 'Do you want to install now?',
+        initialValue: true,
+      }),
     },
     {
       onCancel() {

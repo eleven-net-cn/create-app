@@ -39,6 +39,8 @@ export interface Answers extends Required<Omit<UserArgv, 'overwrite'>> {
   projectDesc: string;
   /** Whether to overwrite the existing project */
   shouldOverwrite: boolean;
+  /** Install now? */
+  installNow: boolean;
 }
 
 export interface CreateOptions extends CliOptions, Answers {

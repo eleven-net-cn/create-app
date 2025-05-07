@@ -25,7 +25,6 @@ import {
 } from '@e.fe/create-app-helper';
 import colors from 'picocolors';
 import { commit, render2Memory } from '@e.fe/template-renderer';
-import { installPackage } from '@antfu/install-pkg';
 
 import { argv } from './argv';
 import { Template } from './template';
@@ -40,6 +39,7 @@ export async function create(options: CreateOptions) {
     projectDesc = '',
     shouldOverwrite = false,
     template = Template.Library,
+    installNow,
     packageManager = 'pnpm',
     prompts,
   } = options;
@@ -163,28 +163,20 @@ export async function create(options: CreateOptions) {
     await tplFnRes.afterRender();
   }
 
-  const pkgJson = JSON.parse(readFileSync(pkgJsonPath, 'utf-8'));
-  const { scripts = {} } = pkgJson || {};
-  const lintFixCmds: string[] = ['lint:fix'];
-  const lintFixCmd = Object.keys(scripts).find(cmd => lintFixCmds.includes(cmd));
-  const hasLintFixCmd = lintFixCmd !== undefined;
-
-  if (!isDebug) {
+  if (!isDebug && installNow) {
     console.log(`\nInstalling by ${packageManager}...\n`);
     // Auto install
-    await installPackage([], {
+    execSync(`${packageManager} install`, {
       cwd: projectRootDir,
-      packageManager,
+      stdio: 'ignore',
     });
-
-    // Auto lint fix
-    if (hasLintFixCmd) {
-      execSync(`npm run ${lintFixCmd}`, {
-        cwd: projectRootDir,
-        stdio: 'ignore',
-      });
-    }
   }
+
+  // Auto lint fix
+  execSync('npx eslint . --fix', {
+    cwd: projectRootDir,
+    stdio: 'ignore',
+  });
 
   // Git Init
   let initializedGit = false;
