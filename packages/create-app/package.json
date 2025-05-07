@@ -54,5 +54,8 @@
   "devDependencies": {
     "@types/minimist": "^1.2.5",
     "@types/prompts": "^2.4.9"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

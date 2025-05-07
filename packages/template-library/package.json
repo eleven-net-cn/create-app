@@ -38,5 +38,8 @@
     "@e.fe/create-app-helper": "workspace:*",
     "@e.fe/template-standard": "workspace:*",
     "camelcase": "^8.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
