@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.3](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-beta.2...@e.fe/create-app@1.0.0-beta.3) (2025-05-07)
+
+
+### Performance Improvements
+
+* auto install, and lint:fix ([87decae](https://github.com/eleven-net-cn/create-app/commit/87decaea267b76f1669ba3db22d14dc19b0dd079))
+
+
+
+
+
 # [1.0.0-beta.2](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-beta.1...@e.fe/create-app@1.0.0-beta.2) (2025-05-07)
 
 **Note:** Version bump only for package @e.fe/create-app
