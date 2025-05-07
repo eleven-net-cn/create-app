@@ -2,6 +2,13 @@
 
 An efficient modular template management scaffold
 
+## Features
+
+- Modular and flexible template assembly with clear logic separation, maintaining similar functionality in one place
+- Template assembly completed in memory, then written to disk at the end
+- Local template debugging capability
+- Turbo for faster debugging and compilation
+
 ## Usage
 
 ```zsh
