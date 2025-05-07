@@ -1,4 +1,4 @@
 export default {
-  type: 'vite',
+  type: 'rollup',
   scopeName: '@e.fe/xxx',
 };

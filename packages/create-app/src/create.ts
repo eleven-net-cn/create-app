@@ -1,7 +1,15 @@
 import type { CreateOptions } from './types';
-import { existsSync, mkdirSync, readFileSync, rmdirSync, unlinkSync, writeFileSync } from 'node:fs';
+import {
+  existsSync,
+  mkdirSync,
+  readFileSync,
+  rmdirSync,
+  unlinkSync,
+  writeFileSync,
+} from 'node:fs';
 import { EOL } from 'node:os';
 import { join, resolve } from 'node:path';
+import { execSync } from 'node:child_process';
 
 import {
   GIT_USER_EMAIL,
@@ -17,6 +25,7 @@ import {
 } from '@e.fe/create-app-helper';
 import colors from 'picocolors';
 import { commit, render2Memory } from '@e.fe/template-renderer';
+import { installPackage } from '@antfu/install-pkg';
 
 import { argv } from './argv';
 import { Template } from './template';
@@ -44,7 +53,7 @@ export async function create(options: CreateOptions) {
 
   let templatePackage = template;
 
-  const pkgJson: Record<string, unknown> = {
+  const basePkgJson: Record<string, unknown> = {
     author: `${GIT_USER_NAME} <${GIT_USER_EMAIL}>`,
     maintainers: [`${GIT_USER_NAME} <${GIT_USER_EMAIL}>`],
     description: projectDesc,
@@ -66,7 +75,7 @@ export async function create(options: CreateOptions) {
   }
 
   if (!existsSync(pkgJsonPath)) {
-    writeFileSync(pkgJsonPath, JSON.stringify(pkgJson, null, 2) + EOL);
+    writeFileSync(pkgJsonPath, JSON.stringify(basePkgJson, null, 2) + EOL);
   }
 
   // Support file: protocol, work locally
@@ -123,23 +132,24 @@ export async function create(options: CreateOptions) {
     }
   };
 
-  // TODO: 判断本地不存在，尝试安装到本地再执行
+  // TODO: install specified template package
   const { default: tplFn } = await import(templatePackage);
 
   if (typeof tplFn !== 'function') {
     throw new TypeError(`${templatePackage} must to export a render function`);
   }
 
-  const tplFnRes: TemplateFnReturnType = await tplFn({
-    cwd,
-    rootDir: projectRootDir,
-    projectName,
-    projectDesc,
-    argv,
-    options,
-    render,
-    prompts,
-  } satisfies TplContext<CreateOptions>) ?? {};
+  const tplFnRes: TemplateFnReturnType
+    = (await tplFn({
+      cwd,
+      rootDir: projectRootDir,
+      projectName,
+      projectDesc,
+      argv,
+      options,
+      render,
+      prompts,
+    } satisfies TplContext<CreateOptions>)) ?? {};
 
   await commit({
     options: {
@@ -151,6 +161,29 @@ export async function create(options: CreateOptions) {
 
   if (typeof tplFnRes?.afterRender === 'function') {
     await tplFnRes.afterRender();
+  }
+
+  const pkgJson = JSON.parse(readFileSync(pkgJsonPath, 'utf-8'));
+  const { scripts = {} } = pkgJson || {};
+  const lintFixCmds: string[] = ['lint:fix'];
+  const lintFixCmd = Object.keys(scripts).find(cmd => lintFixCmds.includes(cmd));
+  const hasLintFixCmd = lintFixCmd !== undefined;
+
+  // Auto lint fix
+  if (hasLintFixCmd) {
+    execSync(`npm run ${lintFixCmd}`, {
+      cwd: projectRootDir,
+      stdio: 'ignore',
+    });
+  }
+
+  if (!isDebug) {
+    console.log(`\nInstalling by ${packageManager}...\n`);
+    // Auto install
+    await installPackage([], {
+      cwd: projectRootDir,
+      packageManager,
+    });
   }
 
   // Git Init

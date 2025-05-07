@@ -5,18 +5,18 @@ import { templates } from './template';
 export const extraCmdOptions: ExtraCmdOption<keyof UserArgv>[] = [
   {
     name: 'overwrite',
-    label: '若目录已存在允许覆盖',
+    label: 'Allow overwriting if directory exists',
     type: 'boolean',
   },
   {
     name: 'packageManager',
-    label: '包管理器',
+    label: 'Package manager',
     alias: 'P',
     bracket: 'pnpm/npm/yarn',
   },
   {
     name: 'template',
-    label: '从指定模板生成新项目',
+    label: 'Generate new project from specified template',
     alias: 'T',
     bracket: templates.map(({ value }) => value).join(','),
   },

@@ -4,6 +4,6 @@ export enum Template {
 }
 
 export const templates = [
-  { label: 'Library（SDK 类库）', value: Template.Library },
-  { label: 'Monorepo（多包/多应用）', value: Template.Monorepo },
+  { label: 'Library（SDK）', value: Template.Library },
+  { label: 'Monorepo（packages/apps）', value: Template.Monorepo },
 ];

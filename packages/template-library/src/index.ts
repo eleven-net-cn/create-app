@@ -41,7 +41,6 @@ const prompts = () => group(
 );
 
 export default defineTemplate(async context => {
-  console.log('context: ', context);
   const { prompts: injectPrompts, render, projectDesc } = context;
   const { type, scopeName } = (injectPrompts as unknown as TemplatePrompts) ?? await prompts();
 

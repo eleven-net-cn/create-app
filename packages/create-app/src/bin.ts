@@ -12,8 +12,8 @@ const program = new Command();
 
 program.version(version, '-V, --version').description('@e.fe/create-app');
 
-program.option('-R, --repo <url>', '从目标仓库生成新项目');
-program.option('--cwd <path>', '指定工作目录');
+program.option('-R, --repo <url>', 'Generate new project from target repository');
+program.option('--cwd <path>', 'Specify working directory');
 
 extraCmdOptions.forEach(item => {
   const { name, label, alias, bracket, type } = item ?? {};
