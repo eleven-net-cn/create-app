@@ -169,14 +169,6 @@ export async function create(options: CreateOptions) {
   const lintFixCmd = Object.keys(scripts).find(cmd => lintFixCmds.includes(cmd));
   const hasLintFixCmd = lintFixCmd !== undefined;
 
-  // Auto lint fix
-  if (hasLintFixCmd) {
-    execSync(`npm run ${lintFixCmd}`, {
-      cwd: projectRootDir,
-      stdio: 'ignore',
-    });
-  }
-
   if (!isDebug) {
     console.log(`\nInstalling by ${packageManager}...\n`);
     // Auto install
@@ -184,6 +176,14 @@ export async function create(options: CreateOptions) {
       cwd: projectRootDir,
       packageManager,
     });
+
+    // Auto lint fix
+    if (hasLintFixCmd) {
+      execSync(`npm run ${lintFixCmd}`, {
+        cwd: projectRootDir,
+        stdio: 'ignore',
+      });
+    }
   }
 
   // Git Init
