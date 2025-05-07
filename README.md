@@ -8,6 +8,8 @@ An efficient modular template management scaffold
 npx @e.fe/create-app@latest
 ```
 
+![Usage](./usage.svg)
+
 ## Contribution
 
 ### Engines
