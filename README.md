@@ -2,6 +2,12 @@
 
 An efficient modular template management scaffold
 
+## Usage
+
+```zsh
+npx @e.fe/create-app@latest
+```
+
 ## Contribution
 
 ### Engines
