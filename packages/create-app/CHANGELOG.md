@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.5](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-beta.4...@e.fe/create-app@1.0.0-beta.5) (2025-05-07)
+
+
+### Performance Improvements
+
+* console logs when installing packages ([9b7cf5b](https://github.com/eleven-net-cn/create-app/commit/9b7cf5b60841e571f795c1eed582338024999f3f))
+
+
+
+
+
 # [1.0.0-beta.4](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-beta.3...@e.fe/create-app@1.0.0-beta.4) (2025-05-07)
 
 
