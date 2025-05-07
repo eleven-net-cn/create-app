@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.6](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-beta.5...@e.fe/create-app@1.0.0-beta.6) (2025-05-07)
+
+
+### Performance Improvements
+
+* add [@e](https://github.com/e).fe/template-monorepo ([0d94a00](https://github.com/eleven-net-cn/create-app/commit/0d94a00936f8f04df7fbf0555ebbc85740b84318))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-beta.4...@e.fe/create-app@1.0.0-beta.5) (2025-05-07)
 
 
