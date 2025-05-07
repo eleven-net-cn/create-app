@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.2](https://github.com/eleven-net-cn/create-app/compare/@e.fe/template-renderer@1.0.0-beta.1...@e.fe/template-renderer@1.0.0-beta.2) (2025-05-07)
+
+**Note:** Version bump only for package @e.fe/template-renderer
+
+
+
+
+
 # 1.0.0-beta.1 (2025-05-06)
 
 
