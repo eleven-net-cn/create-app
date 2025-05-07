@@ -14,7 +14,7 @@ import replace from '@rollup/plugin-replace';
 import camelcase from 'camelcase';
 // import { version as runtimeCoreJsVersion } from '@babel/runtime-corejs3/package.json' assert { type: 'json'};
 
-const libraryNamePascalCase = camelcase('--libraryname--', { pascalCase: true });
+const libraryNamePascalCase = camelcase('<%= globalName %>', { pascalCase: true });
 const isProd = process.env.NODE_ENV === 'production';
 
 /**
