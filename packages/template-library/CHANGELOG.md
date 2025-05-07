@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-beta.4](https://github.com/eleven-net-cn/create-app/compare/@e.fe/template-library@1.0.0-beta.3...@e.fe/template-library@1.0.0-beta.4) (2025-05-07)
+
+
+### Performance Improvements
+
+* perf auto install&eslint fix ([c109d26](https://github.com/eleven-net-cn/create-app/commit/c109d26765e4eaff34c3077271c9f54fa74363c4))
+
+
+
+
+
 # [1.0.0-beta.3](https://github.com/eleven-net-cn/create-app/compare/@e.fe/template-library@1.0.0-beta.2...@e.fe/template-library@1.0.0-beta.3) (2025-05-07)
 
 
