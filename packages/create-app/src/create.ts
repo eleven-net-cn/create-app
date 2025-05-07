@@ -168,15 +168,20 @@ export async function create(options: CreateOptions) {
     // Auto install
     execSync(`${packageManager} install`, {
       cwd: projectRootDir,
-      stdio: 'ignore',
+      stdio: 'inherit',
     });
   }
 
-  // Auto lint fix
-  execSync('npx eslint . --fix', {
-    cwd: projectRootDir,
-    stdio: 'ignore',
-  });
+  try {
+    // Auto lint fix
+    execSync('npx eslint . --fix', {
+      cwd: projectRootDir,
+      stdio: 'ignore',
+    });
+  // eslint-disable-next-line unused-imports/no-unused-vars
+  } catch (error: unknown) {
+    // unnecessary
+  }
 
   // Git Init
   let initializedGit = false;
