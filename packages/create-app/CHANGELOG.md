@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.1](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-beta.6...@e.fe/create-app@1.0.0-rc.1) (2025-05-08)
+
+
+### Performance Improvements
+
+* write base package.json by mem-fs-editor ([122b5e9](https://github.com/eleven-net-cn/create-app/commit/122b5e9cce081dc869cfc16784b4e8325bcba294))
+
+
+
+
+
 # [1.0.0-beta.6](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-beta.5...@e.fe/create-app@1.0.0-beta.6) (2025-05-07)
 
 
