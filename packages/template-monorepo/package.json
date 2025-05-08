@@ -1,7 +1,7 @@
 {
   "name": "@e.fe/template-monorepo",
   "type": "module",
-  "version": "1.0.0-rc.0",
+  "version": "1.0.0-rc.1",
   "description": "The template of monorepo (packages/apps)",
   "author": "Eleven",
   "license": "ISC",

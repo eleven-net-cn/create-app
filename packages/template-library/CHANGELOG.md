@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.1](https://github.com/eleven-net-cn/create-app/compare/@e.fe/template-library@1.0.0-beta.5...@e.fe/template-library@1.0.0-rc.1) (2025-05-08)
+
+
+### Performance Improvements
+
+* corejs settings with vite config ([91b1d92](https://github.com/eleven-net-cn/create-app/commit/91b1d92fc496316d28827768320dad49192fcd41))
+
+
+
+
+
 # [1.0.0-beta.5](https://github.com/eleven-net-cn/create-app/compare/@e.fe/template-library@1.0.0-beta.4...@e.fe/template-library@1.0.0-beta.5) (2025-05-07)
 
 
