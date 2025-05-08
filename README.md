@@ -2,6 +2,14 @@
 
 An efficient modular template management scaffold
 
+## Why
+
+Existing scaffolding tools in the community each have their own issues, such as: inability to debug locally in real-time (like create-vue etc.), lack of support for modular assembly and only generating from a repository or directory (like create-vite etc.).
+
+The [yeoman](https://yeoman.io/) generator is a good approach to scaffold development and can achieve modular template assembly, however, it also cannot support local hot-reload development.
+
+Therefore, I developed create-app to meet my expectations for a scaffolding tool.
+
 ## Features
 
 - Modular and flexible template assembly with clear logic separation, maintaining similar functionality in one place
