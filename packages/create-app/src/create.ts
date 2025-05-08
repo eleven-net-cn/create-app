@@ -5,9 +5,7 @@ import {
   readFileSync,
   rmdirSync,
   unlinkSync,
-  writeFileSync,
 } from 'node:fs';
-import { EOL } from 'node:os';
 import { join, resolve } from 'node:path';
 import { execSync } from 'node:child_process';
 
@@ -24,7 +22,7 @@ import {
   tryGitInit,
 } from '@e.fe/create-app-helper';
 import colors from 'picocolors';
-import { commit, render2Memory } from '@e.fe/template-renderer';
+import { commit, memFs, render2Memory } from '@e.fe/template-renderer';
 
 import { argv } from './argv';
 import { Template } from './template';
@@ -74,8 +72,8 @@ export async function create(options: CreateOptions) {
     mkdirSync(projectRootDir, { recursive: true });
   }
 
-  if (!existsSync(pkgJsonPath)) {
-    writeFileSync(pkgJsonPath, JSON.stringify(basePkgJson, null, 2) + EOL);
+  if (!memFs.exists(pkgJsonPath)) {
+    memFs.writeJSON(pkgJsonPath, basePkgJson);
   }
 
   // Support file: protocol, work locally
