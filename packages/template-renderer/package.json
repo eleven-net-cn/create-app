@@ -1,7 +1,7 @@
 {
   "name": "@e.fe/template-renderer",
   "type": "module",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-rc.0",
   "description": "Generate files from template",
   "author": "Eleven",
   "license": "ISC",
