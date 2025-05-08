@@ -5,7 +5,7 @@ import assetsPlugin from '@laynezh/vite-plugin-lib-assets';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import getBabelOutputPlugin from '@rollup/plugin-babel';
 import dts from 'vite-plugin-dts';
-import { preserveDirectives } from 'rollup-plugin-preserve-directives'
+import { preserveDirectives } from 'rollup-plugin-preserve-directives';
 
 export default defineConfig(({ command }) => ({
   resolve: {
@@ -66,13 +66,10 @@ export default defineConfig(({ command }) => ({
             [
               '@babel/plugin-transform-runtime',
               {
-                /**
-                 * render-template 采用了 useBuiltIns: entry，页面已引入指定浏览器环境不支持的所有 polyfill，
-                 *  因此，组件打包不再重复引入 polyfill。
-                 *
-                 * 这里 transform runtime 仅处理 helper 辅助函数的重复引入。
-                 */
-                corejs: false,
+                corejs: {
+                  version: 3,
+                  proposals: true,
+                },
                 // version: require('@babel/runtime').version,
               },
             ],
