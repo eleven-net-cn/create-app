@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.7](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.6...@e.fe/create-app@1.0.0-rc.7) (2025-05-09)
+
+**Note:** Version bump only for package @e.fe/create-app
+
+
+
+
+
 # [1.0.0-rc.6](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.5...@e.fe/create-app@1.0.0-rc.6) (2025-05-09)
 
 **Note:** Version bump only for package @e.fe/create-app
