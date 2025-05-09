@@ -64,34 +64,6 @@ export default () =>
           options: templates,
         });
       },
-      packageManager: async () => {
-        if (argv.packageManager) {
-          return argv.packageManager;
-        }
-
-        return select<PackageManager>({
-          message: 'Select package manager:',
-          initialValue: 'pnpm',
-          options: [
-            {
-              label: 'pnpm',
-              value: 'pnpm',
-            },
-            {
-              label: 'npm',
-              value: 'npm',
-            },
-            {
-              label: 'yarn',
-              value: 'yarn',
-            },
-          ],
-        });
-      },
-      installNow: async () => confirm({
-        message: 'Do you want to install now?',
-        initialValue: true,
-      }),
     },
     {
       onCancel() {

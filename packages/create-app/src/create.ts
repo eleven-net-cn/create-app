@@ -1,4 +1,4 @@
-import type { CreateOptions } from './types';
+import type { CreateOptions, PackageManager } from './types';
 import {
   existsSync,
   mkdirSync,
@@ -22,6 +22,7 @@ import {
   tryGitInit,
 } from '@e.fe/create-app-helper';
 import colors from 'picocolors';
+import { confirm, isCancel, select, spinner } from '@clack/prompts';
 import { commit, memFs, render2Memory } from '@e.fe/template-renderer';
 
 import { argv } from './argv';
@@ -37,8 +38,6 @@ export async function create(options: CreateOptions) {
     projectDesc = '',
     shouldOverwrite = false,
     template = Template.Library,
-    installNow,
-    packageManager = 'pnpm',
     prompts,
   } = options;
 
@@ -50,16 +49,6 @@ export async function create(options: CreateOptions) {
   const pkgJsonPath = join(projectRootDir, 'package.json');
 
   let templatePackage = template;
-
-  const basePkgJson: Record<string, unknown> = {
-    author: `${GIT_USER_NAME} <${GIT_USER_EMAIL}>`,
-    maintainers: [`${GIT_USER_NAME} <${GIT_USER_EMAIL}>`],
-    description: projectDesc,
-    volta: {
-      node: NODE_VERSION,
-      [packageManager]: PACKAGE_MANAGER[packageManager],
-    },
-  };
 
   // INFO: isDebug will be true when developing locally, should skip to empty the target dir.
   if (!isDebug && existsSync(projectRootDir) && shouldOverwrite) {
@@ -73,7 +62,11 @@ export async function create(options: CreateOptions) {
   }
 
   if (!memFs.exists(pkgJsonPath)) {
-    memFs.writeJSON(pkgJsonPath, basePkgJson);
+    memFs.writeJSON(pkgJsonPath, {
+      author: `${GIT_USER_NAME} <${GIT_USER_EMAIL}>`,
+      maintainers: [`${GIT_USER_NAME} <${GIT_USER_EMAIL}>`],
+      description: projectDesc,
+    });
   }
 
   // Support file: protocol, work locally
@@ -149,6 +142,40 @@ export async function create(options: CreateOptions) {
       prompts,
     } satisfies TplContext<CreateOptions>)) ?? {};
 
+  let packageManager: PackageManager = 'pnpm';
+
+  if (argv.packageManager) {
+    packageManager = argv.packageManager;
+  } else {
+    packageManager = await select<PackageManager>({
+      message: 'Select package manager:',
+      initialValue: 'pnpm',
+      options: [
+        {
+          label: 'pnpm',
+          value: 'pnpm',
+        },
+        {
+          label: 'npm',
+          value: 'npm',
+        },
+        {
+          label: 'yarn',
+          value: 'yarn',
+        },
+      ],
+    }) as PackageManager;
+
+    isCancel(packageManager) && process.exit(0);
+  }
+
+  memFs.extendJSON(pkgJsonPath, {
+    volta: {
+      node: NODE_VERSION,
+      [packageManager]: PACKAGE_MANAGER[packageManager],
+    },
+  });
+
   await commit({
     options: {
       ...options,
@@ -161,13 +188,22 @@ export async function create(options: CreateOptions) {
     await tplFnRes.afterRender();
   }
 
+  const installNow = await confirm({
+    message: 'Do you want to install now?',
+    initialValue: true,
+  });
+
+  isCancel(installNow) && process.exit(0);
+
   if (!isDebug && installNow) {
-    console.log(`\nInstalling by ${packageManager}...\n`);
+    const installing = spinner();
+    installing.start(`\nInstalling via ${packageManager}...\n`);
     // Auto install
     execSync(`${packageManager} install`, {
       cwd: projectRootDir,
       stdio: 'inherit',
     });
+    installing.stop();
   }
 
   try {

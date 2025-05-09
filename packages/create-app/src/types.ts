@@ -32,15 +32,13 @@ export interface UserArgv {
   packageManager?: PackageManager;
 }
 
-export interface Answers extends Required<Omit<UserArgv, 'overwrite'>> {
+export interface Answers extends Required<Omit<UserArgv, 'overwrite' | 'packageManager'>> {
   /** Project Name */
   projectName: string;
   /** Project Description */
   projectDesc: string;
   /** Whether to overwrite the existing project */
   shouldOverwrite: boolean;
-  /** Install now? */
-  installNow: boolean;
 }
 
 export interface CreateOptions extends CliOptions, Answers {
