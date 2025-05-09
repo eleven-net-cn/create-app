@@ -6,8 +6,9 @@ import {
   rmdirSync,
   unlinkSync,
 } from 'node:fs';
-import { join, resolve } from 'node:path';
+import { dirname, join, resolve } from 'node:path';
 import { execSync } from 'node:child_process';
+import { fileURLToPath } from 'node:url';
 
 import {
   GIT_USER_EMAIL,
@@ -22,7 +23,7 @@ import {
   tryGitInit,
 } from '@e.fe/create-app-helper';
 import colors from 'picocolors';
-import { confirm, isCancel, select, spinner } from '@clack/prompts';
+import { confirm, isCancel, select } from '@clack/prompts';
 import { installPackage } from '@antfu/install-pkg';
 import { commit, memFs, render2Memory } from '@e.fe/template-renderer';
 
@@ -30,7 +31,7 @@ import { argv } from './argv';
 import { Template } from './template';
 
 export async function create(options: CreateOptions) {
-  // TODO: 检测限制 nodejs 版本
+  // TODO: Check Node.js version restrictions
 
   const {
     mode,
@@ -124,14 +125,14 @@ export async function create(options: CreateOptions) {
     }
   };
 
-  // Check if template package is installed locally
-  const localNodeModulesPath = resolve(process.cwd(), 'node_modules', templatePackage);
+  const createAppDir = dirname(fileURLToPath(new URL('.', import.meta.url)));
+  const localNodeModulesPath = resolve(createAppDir, 'node_modules', templatePackage);
 
   if (!existsSync(localNodeModulesPath)) {
-    const installingTemplate = spinner();
-    installingTemplate.start(`Installing template package: ${templatePackage}`);
-    await installPackage(templatePackage);
-    installingTemplate.stop();
+    console.log(`\nInstalling template package: ${templatePackage}\n`);
+    await installPackage(templatePackage, {
+      cwd: createAppDir,
+    });
   }
 
   const { default: tplFn } = await import(templatePackage);
@@ -206,14 +207,12 @@ export async function create(options: CreateOptions) {
   isCancel(installNow) && process.exit(0);
 
   if (!isDebug && installNow) {
-    const installing = spinner();
-    installing.start(`\nInstalling via ${packageManager}...\n`);
+    console.log(`\nInstalling via ${packageManager}...\n`);
     // Auto install
     execSync(`${packageManager} install`, {
       cwd: projectRootDir,
       stdio: 'inherit',
     });
-    installing.stop();
   }
 
   try {

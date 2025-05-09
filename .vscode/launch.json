@@ -9,7 +9,7 @@
       "request": "launch",
       "name": "CLI Run",
       "skipFiles": ["<node_internals>/**"],
-      "runtimeExecutable": "pnpm dlx",
+      "runtimeExecutable": "npx",
       "runtimeArgs": [
         "tsx" // 直接运行 ts 文件
       ],
