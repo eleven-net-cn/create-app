@@ -13,7 +13,7 @@ export default () =>
     {
       projectName: () =>
         text({
-          message: `Please enter project name${colors.gray(' (lowercase letters, numbers, connected by hyphens)')}:`,
+          message: `Enter project name${colors.gray(' (lowercase letters, numbers, connected by hyphens)')}:`,
           validate(value: string) {
             // lowercase letters, numbers, connected by hyphens
             // eslint-disable-next-line regexp/no-unused-capturing-group
@@ -48,7 +48,7 @@ export default () =>
       },
       projectDesc: () =>
         text({
-          message: `Please enter project description${colors.gray(' (optional, press Enter to skip)')}:`,
+          message: `Enter project description${colors.gray(' (optional, press Enter to skip)')}:`,
           initialValue: '',
         }),
       template: async () => {
@@ -70,7 +70,7 @@ export default () =>
         }
 
         return select<PackageManager>({
-          message: 'Please select package manager:',
+          message: 'Select package manager:',
           initialValue: 'pnpm',
           options: [
             {

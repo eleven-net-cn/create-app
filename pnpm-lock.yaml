@@ -120,6 +120,9 @@ importers:
       camelcase:
         specifier: ^8.0.0
         version: 8.0.0
+      picocolors:
+        specifier: ^1.1.1
+        version: 1.1.1
 
   packages/template-monorepo:
     dependencies:
