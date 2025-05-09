@@ -129,7 +129,7 @@ export async function create(options: CreateOptions) {
 
   const createAppDir = dirname(require.resolve('@e.fe/create-app/package.json'));
   console.log('createAppDir: ', createAppDir);
-  const templatePackagePaths = [resolve(createAppDir, '../..'), resolve(createAppDir, 'node_modules', templatePackage)];
+  const templatePackagePaths = [resolve(createAppDir, '../..', templatePackage), resolve(createAppDir, 'node_modules', templatePackage)];
   console.log('templatePackagePaths: ', templatePackagePaths);
   const existsTemplatePackage = templatePackagePaths.some(tplPath => existsSync(tplPath));
   console.log('existsTemplatePackage: ', existsTemplatePackage);
