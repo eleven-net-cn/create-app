@@ -129,14 +129,12 @@ export async function create(options: CreateOptions) {
 
   const createAppDir = dirname(require.resolve('@e.fe/create-app/package.json'));
   console.log('createAppDir: ', createAppDir);
-  const templatePackagePath = resolve(createAppDir, 'node_modules', templatePackage);
-  console.log('templatePackagePath: ', templatePackagePath);
+  const templatePackagePaths = [resolve(createAppDir, '../..'), resolve(createAppDir, 'node_modules', templatePackage)];
+  console.log('templatePackagePaths: ', templatePackagePaths);
+  const existsTemplatePackage = templatePackagePaths.some(tplPath => existsSync(tplPath));
+  console.log('existsTemplatePackage: ', existsTemplatePackage);
 
-  execSync(`ls ${createAppDir}/node_modules/@e.fe`);
-
-  console.log('existsSync(templatePackagePath): ', existsSync(templatePackagePath));
-
-  if (!existsSync(templatePackagePath)) {
+  if (!existsTemplatePackage) {
     console.log(`\nInstalling template package: ${templatePackage}\n`);
     await installPackage(templatePackage, {
       cwd: createAppDir,
