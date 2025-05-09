@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.4](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.3...@e.fe/create-app@1.0.0-rc.4) (2025-05-09)
+
+
+### Performance Improvements
+
+* Optimize template installation ([20971f5](https://github.com/eleven-net-cn/create-app/commit/20971f5aa45b7c8b619ead5b6e35c23e58d56cfa))
+
+
+
+
+
 # [1.0.0-rc.3](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.2...@e.fe/create-app@1.0.0-rc.3) (2025-05-09)
 
 
