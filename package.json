@@ -10,7 +10,7 @@
     "watch": "turbo watch build",
     "build": "turbo run build",
     "release": "pnpm build && lerna publish",
-    "release:canary": "pnpm build && lerna publish --canary",
+    "release:next": "pnpm build && lerna publish --dist-tag next",
     "lint": "eslint . --ignore-pattern 'packages/*/template/**/*'",
     "lint:fix": "eslint . --fix --max-warnings=0 --no-warn-ignored --ignore-pattern 'packages/*/template/**/*'",
     "lint:fix.template": "eslint packages/*/template/**/* --fix --max-warnings=0 --no-warn-ignored",
