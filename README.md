@@ -20,6 +20,10 @@ Therefore, I developed create-app to meet my expectations for a scaffolding tool
 
 ```zsh
 npx @e.fe/create-app@latest
+
+# OR
+
+pnpm dlx @e.fe/create-app@latest
 ```
 
 ![Usage](./usage.svg)
