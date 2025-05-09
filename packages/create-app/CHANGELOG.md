@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.3](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.2...@e.fe/create-app@1.0.0-rc.3) (2025-05-09)
+
+
+### Performance Improvements
+
+* Automatically install if the template package is not installed ([9ac7f2f](https://github.com/eleven-net-cn/create-app/commit/9ac7f2fd8e19a5c5df985ed7f8d6315934a47ab0))
+* Package manager inquiry to the end ([771afe9](https://github.com/eleven-net-cn/create-app/commit/771afe90526e34aebbbd5f0fcecbdb662c8a7cf5))
+* remove scopeName, replace with optional globalName ([59afec1](https://github.com/eleven-net-cn/create-app/commit/59afec150d87c8ad789712dbb94ba4e671f7e31c))
+
+
+
+
+
 # [1.0.0-rc.2](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.1...@e.fe/create-app@1.0.0-rc.2) (2025-05-08)
 
 **Note:** Version bump only for package @e.fe/create-app

@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.2](https://github.com/eleven-net-cn/create-app/compare/@e.fe/template-library@1.0.0-rc.1...@e.fe/template-library@1.0.0-rc.2) (2025-05-09)
+
+
+### Performance Improvements
+
+* remove scopeName, replace with optional globalName ([59afec1](https://github.com/eleven-net-cn/create-app/commit/59afec150d87c8ad789712dbb94ba4e671f7e31c))
+
+
+
+
+
 # [1.0.0-rc.1](https://github.com/eleven-net-cn/create-app/compare/@e.fe/template-library@1.0.0-beta.5...@e.fe/template-library@1.0.0-rc.1) (2025-05-08)
 
 
