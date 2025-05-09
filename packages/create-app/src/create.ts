@@ -23,6 +23,7 @@ import {
 } from '@e.fe/create-app-helper';
 import colors from 'picocolors';
 import { confirm, isCancel, select, spinner } from '@clack/prompts';
+import { installPackage } from '@antfu/install-pkg';
 import { commit, memFs, render2Memory } from '@e.fe/template-renderer';
 
 import { argv } from './argv';
@@ -123,7 +124,16 @@ export async function create(options: CreateOptions) {
     }
   };
 
-  // TODO: install specified template package
+  // Check if template package is installed locally
+  const localNodeModulesPath = resolve(process.cwd(), 'node_modules', templatePackage);
+
+  if (!existsSync(localNodeModulesPath)) {
+    const installingTemplate = spinner();
+    installingTemplate.start(`Installing template package: ${templatePackage}`);
+    await installPackage(templatePackage);
+    installingTemplate.stop();
+  }
+
   const { default: tplFn } = await import(templatePackage);
 
   if (typeof tplFn !== 'function') {
