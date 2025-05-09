@@ -1,5 +1,3 @@
-import type { PackageManager } from './types';
-
 import { existsSync } from 'node:fs';
 import { basename, join } from 'node:path';
 import { cancel, confirm, group, select, text } from '@clack/prompts';
