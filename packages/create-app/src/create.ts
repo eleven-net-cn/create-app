@@ -132,6 +132,10 @@ export async function create(options: CreateOptions) {
   const templatePackagePath = resolve(createAppDir, 'node_modules', templatePackage);
   console.log('templatePackagePath: ', templatePackagePath);
 
+  execSync(`ls ${createAppDir}//node_modules/@e.fe`);
+
+  console.log('existsSync(templatePackagePath): ', existsSync(templatePackagePath));
+
   if (!existsSync(templatePackagePath)) {
     console.log(`\nInstalling template package: ${templatePackage}\n`);
     await installPackage(templatePackage, {
