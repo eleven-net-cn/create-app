@@ -8,7 +8,7 @@ import {
 } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { execSync } from 'node:child_process';
-import { fileURLToPath } from 'node:url';
+import { createRequire } from 'node:module';
 
 import {
   GIT_USER_EMAIL,
@@ -29,6 +29,8 @@ import { commit, memFs, render2Memory } from '@e.fe/template-renderer';
 
 import { argv } from './argv';
 import { Template } from './template';
+
+const require = createRequire(import.meta.url);
 
 export async function create(options: CreateOptions) {
   // TODO: Check Node.js version restrictions
@@ -125,10 +127,12 @@ export async function create(options: CreateOptions) {
     }
   };
 
-  const createAppDir = dirname(fileURLToPath(new URL('.', import.meta.url)));
-  const localNodeModulesPath = resolve(createAppDir, 'node_modules', templatePackage);
+  const createAppDir = dirname(require.resolve('@e.fe/create-app/package.json'));
+  console.log('createAppDir: ', createAppDir);
+  const templatePackagePath = resolve(createAppDir, 'node_modules', templatePackage);
+  console.log('templatePackagePath: ', templatePackagePath);
 
-  if (!existsSync(localNodeModulesPath)) {
+  if (!existsSync(templatePackagePath)) {
     console.log(`\nInstalling template package: ${templatePackage}\n`);
     await installPackage(templatePackage, {
       cwd: createAppDir,
