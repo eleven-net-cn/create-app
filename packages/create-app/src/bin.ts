@@ -31,7 +31,7 @@ program.action(async (options: CliOptions) => {
 });
 
 program
-  .command('tiged')
+  .command('tiged <src>')
   .alias('from-repo')
   .description('generate new project from target repository')
   .allowUnknownOption()
