@@ -28,6 +28,12 @@ pnpm dlx @e.fe/create-app@latest
 
 ![Usage](./usage.svg)
 
+Create new project from specify repo
+
+```zsh
+npx @e.fe/create-app@latest from-repo https://github.com/xxx/xxx.git
+```
+
 ## Contribution
 
 ### Engines
