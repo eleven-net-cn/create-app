@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.10](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.9...@e.fe/create-app@1.0.0-rc.10) (2025-05-12)
+
+
+### Features
+
+* create app from the specify repo, by tiged ([e786c76](https://github.com/eleven-net-cn/create-app/commit/e786c76c4622c8b6a2065b62eda203a2f3c9f89a))
+
+
+
+
+
 # [1.0.0-rc.9](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.8...@e.fe/create-app@1.0.0-rc.9) (2025-05-09)
 
 **Note:** Version bump only for package @e.fe/create-app
