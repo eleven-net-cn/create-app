@@ -1,7 +1,7 @@
+import { execSync } from 'node:child_process';
 import type { Answers, CliOptions } from './types';
 import { Command } from 'commander';
 import leven from 'leven';
-
 import colors from 'picocolors';
 import { version } from '../package.json';
 import { extraCmdOptions } from './argv';
@@ -12,8 +12,8 @@ const program = new Command();
 
 program.version(version, '-V, --version').description('@e.fe/create-app');
 
-program.option('-R, --repo <url>', 'Generate new project from target repository');
-program.option('--cwd <path>', 'Specify working directory');
+// program.option('-R, --repo <url>', 'Generate new project from target repository');
+program.option('--cwd <path>', 'specify working directory');
 
 extraCmdOptions.forEach(item => {
   const { name, label, alias, bracket, type } = item ?? {};
@@ -29,6 +29,32 @@ program.action(async (options: CliOptions) => {
     ...options,
   });
 });
+
+program
+  .command('tiged')
+  .alias('from-repo')
+  .description('generate new project from target repository')
+  .allowUnknownOption()
+  .allowExcessArguments()
+  .addHelpText('after', () => {
+    return execSync('npx tiged --help', {
+      stdio: 'pipe',
+      encoding: 'utf-8',
+    });
+  })
+  .action(() => {
+    try {
+      execSync(`npx tiged ${process.argv.slice(3).join(' ')}`, {
+        stdio: 'inherit',
+      });
+      // eslint-disable-next-line unused-imports/no-unused-vars
+    } catch (error: any) {
+      process.exit(0);
+    }
+
+    // TODO: More repository operations to follow
+  })
+;
 
 program.on('command:*', ([unknownCommand]) => {
   program.outputHelp();

@@ -1,24 +1,23 @@
 import type { Answers, ExtraCmdOption, UserArgv } from './types';
 import minimist from 'minimist';
-import { templates } from './template';
 
 export const extraCmdOptions: ExtraCmdOption<keyof UserArgv>[] = [
   {
     name: 'overwrite',
-    label: 'Allow overwriting if directory exists',
+    label: 'allow overwriting if directory exists',
     type: 'boolean',
   },
   {
     name: 'packageManager',
-    label: 'Package manager',
+    label: 'package manager',
     alias: 'P',
     bracket: 'pnpm/npm/yarn',
   },
   {
     name: 'template',
-    label: 'Generate new project from specified template',
+    label: 'generate new project from specified template',
     alias: 'T',
-    bracket: templates.map(({ value }) => value).join(','),
+    bracket: '@scope/template-pkg-name',
   },
 ];
 
