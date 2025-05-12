@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.11](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.10...@e.fe/create-app@1.0.0-rc.11) (2025-05-12)
+
+
+### Performance Improvements
+
+* tiged <src> ([28851aa](https://github.com/eleven-net-cn/create-app/commit/28851aa2e998d03aefd7d02740a40dd65fe6c09e))
+
+
+
+
+
 # [1.0.0-rc.10](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.9...@e.fe/create-app@1.0.0-rc.10) (2025-05-12)
 
 
