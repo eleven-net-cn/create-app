@@ -19,11 +19,11 @@ Therefore, I developed create-app to meet my expectations for a scaffolding tool
 ## Usage
 
 ```zsh
-npx @e.fe/create-app@latest
+npm create @e.fe/app@latest
 
 # OR
 
-pnpm dlx @e.fe/create-app@latest
+npx @e.fe/create-app@latest
 ```
 
 ![Usage](./usage.svg)
@@ -31,7 +31,7 @@ pnpm dlx @e.fe/create-app@latest
 Create new project from specify repo
 
 ```zsh
-npx @e.fe/create-app@latest from-repo https://github.com/xxx/xxx.git
+npm create @e.fe/app@latest from-repo https://github.com/xxx/xxx.git
 ```
 
 ## Contribution
