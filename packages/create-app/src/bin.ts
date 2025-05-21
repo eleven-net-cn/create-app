@@ -6,13 +6,13 @@ import colors from 'picocolors';
 import { version } from '../package.json';
 import { extraCmdOptions } from './argv';
 import { create } from './create';
+import { app } from './app';
 import prompts from './prompts';
 
 const program = new Command();
 
 program.version(version, '-V, --version').description('@e.fe/create-app');
 
-// program.option('-R, --repo <url>', 'Generate new project from target repository');
 program.option('--cwd <path>', 'specify working directory');
 
 extraCmdOptions.forEach(item => {
@@ -24,10 +24,23 @@ extraCmdOptions.forEach(item => {
 
 program.action(async (options: CliOptions) => {
   const answers = await prompts() as Answers;
-  await create({
-    ...answers,
-    ...options,
-  });
+  const { appType, createType } = answers;
+
+  const createTypes = app[appType] || [];
+  const { command, template } = createTypes.find(item => item.value === createType);
+
+  if (command) {
+    execSync(command, {
+      stdio: 'inherit',
+      cwd: options.cwd,
+    });
+  } else if (template) {
+    await create({
+      template,
+      ...answers,
+      ...options,
+    });
+  }
 });
 
 program

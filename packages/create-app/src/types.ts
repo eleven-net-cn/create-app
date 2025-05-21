@@ -33,6 +33,10 @@ export interface UserArgv {
 }
 
 export interface Answers extends Required<Omit<UserArgv, 'overwrite' | 'packageManager'>> {
+  /** App Type */
+  appType: string;
+  /** Create App Type */
+  createType: string;
   /** Project Name */
   projectName: string;
   /** Project Description */

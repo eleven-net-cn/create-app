@@ -93,6 +93,7 @@ watcher.on('ready', async () => {
     watchPaths.forEach(filePath => {
       console.log(colors.blueBright(` ${colors.cyanBright(relative(cwd, filePath))}`));
     });
+    console.log();
   }
 });
 

@@ -42,7 +42,7 @@ export async function create(options: CreateOptions) {
     projectDesc = '',
     shouldOverwrite = false,
     template = Template.Library,
-    prompts,
+    prompts, // default value must be undefined
   } = options;
 
   if (!projectName) return;
@@ -163,8 +163,10 @@ export async function create(options: CreateOptions) {
 
   if (argv.packageManager) {
     packageManager = argv.packageManager;
+  } else if (prompts?.packageManager) {
+    packageManager = prompts?.packageManager as PackageManager;
   } else {
-    packageManager = await select<PackageManager>({
+    packageManager = (await select<PackageManager>({
       message: 'Select package manager:',
       initialValue: 'pnpm',
       options: [
@@ -181,7 +183,7 @@ export async function create(options: CreateOptions) {
           value: 'yarn',
         },
       ],
-    }) as PackageManager;
+    })) as PackageManager;
 
     isCancel(packageManager) && process.exit(0);
   }
@@ -205,12 +207,15 @@ export async function create(options: CreateOptions) {
     await tplFnRes.afterRender();
   }
 
-  const installNow = await confirm({
-    message: 'Do you want to install now?',
-    initialValue: true,
-  });
+  let installNow = prompts?.installNow;
 
-  isCancel(installNow) && process.exit(0);
+  if (prompts?.installNow === undefined) {
+    installNow = await confirm({
+      message: 'Do you want to install now?',
+      initialValue: true,
+    });
+    isCancel(installNow) && process.exit(0);
+  }
 
   if (!isDebug && installNow) {
     console.log(`\nInstalling via ${packageManager}...\n`);
