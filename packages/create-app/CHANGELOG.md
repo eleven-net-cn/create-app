@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.12](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.11...@e.fe/create-app@1.0.0-rc.12) (2025-05-21)
+
+
+### Features
+
+* create app from command ([b047752](https://github.com/eleven-net-cn/create-app/commit/b047752aca0e36f9a4c2bfcbb32e5a5530923271))
+
+
+
+
+
 # [1.0.0-rc.11](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.10...@e.fe/create-app@1.0.0-rc.11) (2025-05-12)
 
 
