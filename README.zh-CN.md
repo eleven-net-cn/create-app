@@ -78,4 +78,4 @@ npm create @e.fe/app@latest -T @scope/template-xxx
 
   # 从 @scope/template-xxx 创建 my-app
   npm create @e.fe/app@latest -T [@scope/template-xxx]
-  ``` 
+  ```
