@@ -1,20 +1,19 @@
 # create-app
 
-An efficient modular template management scaffold
+<p align='center'>
+Efficient Modern Scaffolding
+</p>
 
-## Why
-
-Existing scaffolding tools in the community each have their own issues, such as: inability to debug locally in real-time (like [create-vue](https://github.com/vuejs/create-vue) etc.), lack of support for modular assembly and only generating from a repository or directory (like [create-vite](https://github.com/vitejs/vite/tree/main/packages/create-vite) etc.).
-
-The [yeoman](https://yeoman.io/) generator is a good approach to scaffold development and can achieve modular template assembly, however, it also cannot support local hot-reload development templates.
-
-Therefore, I developed create-app to meet my expectations for a scaffolding tool.
+<p align='center'>
+<b>English</b> | <a href="./README.zh-CN.md">简体中文</a>
+</p>
 
 ## Features
 
-- Modular and flexible template assembly with clear logic separation, maintaining similar functionality in one place
-- Template assembly completed in memory, then written to disk at the end
-- Local hot-reload development templates
+- :zap: Local hot-reload template debugging
+- :art: Free combination of modules within templates
+- :recycle: Templates can call each other
+- :rocket: Assemble templates in memory and write to disk at once
 
 ## Usage
 
@@ -28,47 +27,57 @@ npx @e.fe/create-app@latest
 
 ![Usage](./usage.svg)
 
-Create new project from specify repo
+### More
 
 ```zsh
+# From Repo
 npm create @e.fe/app@latest from-repo https://github.com/xxx/xxx.git
+
+# From Template
+npm create @e.fe/app@latest -T @scope/template-xxx
 ```
 
-## Contribution
+## Why
 
-### Engines
+Popular scaffolding tools have various issues, with the most important ones being:
 
-1. Make sure [Volta](https://volta.sh/) is installed, it will automatically switch development tools (NodeJS, pnpm) versions
+1. Most cannot hot-reload debug templates, making template testing time-consuming
 
-2. [pnpm support with volta](https://docs.volta.sh/advanced/pnpm)
+2. Some don't allow free combination of templates, only creating from fixed templates or downloading from repositories, making it difficult to maintain when we have multiple templates
 
-   Set `VOLTA_FEATURE_PNPM` in system environment variables to ensure pnpm support is enabled
+At work, I needed to develop a better scaffolding tool for the team, which was the initial motivation for writing this code.
 
-   Example settings in `~/.zshrc`:
+I often need to quickly create various types of projects, so I developed this project with the following goals:
 
-   ```zsh
-   export VOLTA_HOME="$HOME/.volta" # Usually set automatically during Volta installation
-   export PATH="$VOLTA_HOME/bin:$PATH" # Usually set automatically during Volta installation
-   + export VOLTA_FEATURE_PNPM=1 # Manually added to enable pnpm support
-   ```
+- [x] Maintain commonly used project templates and workflows
 
-   > Note: After modifying the configuration, restart the terminal or run `source ~/.zshrc` to apply the changes.
+- [x] Converge standard code specifications with `@e.fe/template-standard`
 
-### Command
+- [x] Support direct calls to excellent community scaffolding tools like React, Vue, etc.
 
-```zsh
-# Testing CLI
-# I like to run and debug using VSCode launch mode, you can use the shortcut F5 to start quickly.
-pnpm start:cli          # Start CLI, without ts compilation (Better in VSCode JavaScript Debug Terminal)
+  Maintaining our own work templates is the basic goal, but excellent community tools are also in our arsenal
 
-# Testing Template
-pnpm start              # Default: @e.fe/template-library
+- [x] Support creating new projects from any project repository
 
-# Watching
-pnpm watch              # Watching all packages, Cache with turbo
-pnpm watch --filter @e.fe/xxx              # Watching a specific package and its dependencies (by turbo)
-pnpm -F @e.fe/xxx start   # Watching a specific package (Only for @e.fe/xxx)
+  Inherited from [tiged](https://github.com/tiged/tiged), with additional features
 
-# Build
-pnpm build              # Build all packages, Cache with turbo
-```
+  ```zsh
+  # Create a new project from https://github.com/xxx/xxx.git
+  npm create @e.fe/app@latest from-repo https://github.com/xxx/xxx.git
+  ```
+
+- [x] `create-app` has capabilities similar to [yeoman](https://yeoman.io/)
+
+  template-xxx is equivalent to [yeoman generator](https://yeoman.io/authoring/), they both rely on capabilities provided by the upper layer
+
+  Templates can be created and published independently, maintained in separate repositories
+
+  ```zsh
+  # Create my-app from generator-xxx
+  yo [xxx] my-app
+
+  # They work in a similar way
+
+  # Create my-app from @scope/template-xxx
+  npm create @e.fe/app@latest -T [@scope/template-xxx]
+  ```

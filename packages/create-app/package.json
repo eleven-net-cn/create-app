@@ -2,7 +2,7 @@
   "name": "@e.fe/create-app",
   "type": "module",
   "version": "1.0.0-rc.12",
-  "description": "",
+  "description": "Efficient Modern Scaffolding",
   "author": "Eleven",
   "license": "ISC",
   "repository": {
