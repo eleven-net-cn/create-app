@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.13](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.12...@e.fe/create-app@1.0.0-rc.13) (2025-05-23)
+
+
+### Features
+
+* rename template-render to create-app-renderer ([e1fbedd](https://github.com/eleven-net-cn/create-app/commit/e1fbeddf056431125e2e5c77ad36979a8b4a9a90))
+
+
+
+
+
 # [1.0.0-rc.12](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.11...@e.fe/create-app@1.0.0-rc.12) (2025-05-21)
 
 

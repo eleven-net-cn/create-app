@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# 1.0.0-rc.2 (2025-05-23)
+
+
+### Features
+
+* rename template-render to create-app-renderer ([e1fbedd](https://github.com/eleven-net-cn/create-app/commit/e1fbeddf056431125e2e5c77ad36979a8b4a9a90))
+
+
+
+
+
 # [1.0.0-rc.1](https://github.com/eleven-net-cn/create-app/compare/@e.fe/template-renderer@1.0.0-beta.3...@e.fe/template-renderer@1.0.0-rc.1) (2025-05-08)
 
 **Note:** Version bump only for package @e.fe/template-renderer
