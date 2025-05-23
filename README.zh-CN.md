@@ -1,10 +1,16 @@
 # create-app
 
 <p align='center'>
-<a href="./README.md">English</a> | <b>简体中文</b>
+高效的现代脚手架
 </p>
 
-高效的现代脚手架
+<div align='center'>
+  <a href="https://deepwiki.com/eleven-net-cn/create-app"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
+</div>
+
+<p align='center'>
+<a href="./README.md">English</a> | <b>简体中文</b>
+</p>
 
 ## 特性
 

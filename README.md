@@ -4,6 +4,10 @@
 Efficient Modern Scaffolding
 </p>
 
+<div align='center'>
+  <a href="https://deepwiki.com/eleven-net-cn/create-app"><img src="https://deepwiki.com/badge.svg" alt="Ask DeepWiki"></a>
+</div>
+
 <p align='center'>
 <b>English</b> | <a href="./README.zh-CN.md">简体中文</a>
 </p>
