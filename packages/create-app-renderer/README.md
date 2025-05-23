@@ -1,4 +1,4 @@
-# @e.fe/template-renderer
+# @e.fe/create-app-renderer
 
 Render templates to disk.
 
@@ -7,7 +7,7 @@ Render templates to disk.
 ```typescript
 import { fileURLToPath } from 'node:url';
 
-import { render } from '@e.fe/template-renderer';
+import { render } from '@e.fe/create-app-renderer';
 
 const templateDir = resolve(dirname(fileURLToPath(import.meta.url)), '../template');
 const resolveDir = (dir: string) => resolve(templateDir, dir);
@@ -29,7 +29,7 @@ Or, render to disk step by step:
 ```typescript
 import { fileURLToPath } from 'node:url';
 
-import { commit, render2memory } from '@e.fe/template-renderer';
+import { commit, render2memory } from '@e.fe/create-app-renderer';
 
 const templateDir = resolve(dirname(fileURLToPath(import.meta.url)), '../template');
 const resolveDir = (dir: string) => resolve(templateDir, dir);

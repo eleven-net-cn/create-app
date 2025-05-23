@@ -68,15 +68,15 @@ importers:
       '@e.fe/create-app-helper':
         specifier: workspace:*
         version: link:../create-app-helper
+      '@e.fe/create-app-renderer':
+        specifier: workspace:*
+        version: link:../create-app-renderer
       '@e.fe/template-library':
         specifier: workspace:*
         version: link:../template-library
       '@e.fe/template-monorepo':
         specifier: workspace:*
         version: link:../template-monorepo
-      '@e.fe/template-renderer':
-        specifier: workspace:*
-        version: link:../template-renderer
       commander:
         specifier: ^13.1.0
         version: 13.1.0
@@ -109,6 +109,21 @@ importers:
         specifier: ^3.27.0
         version: 3.27.0
 
+  packages/create-app-renderer:
+    dependencies:
+      ejs:
+        specifier: ^3.1.10
+        version: 3.1.10
+      istextorbinary:
+        specifier: ^9.5.0
+        version: 9.5.0
+      mem-fs:
+        specifier: ^4.1.2
+        version: 4.1.2
+      mem-fs-editor:
+        specifier: ^11.1.4
+        version: 11.1.4(mem-fs@4.1.2)
+
   packages/template-library:
     dependencies:
       '@clack/prompts':
@@ -138,21 +153,6 @@ importers:
       '@e.fe/template-standard':
         specifier: workspace:*
         version: link:../template-standard
-
-  packages/template-renderer:
-    dependencies:
-      ejs:
-        specifier: ^3.1.10
-        version: 3.1.10
-      istextorbinary:
-        specifier: ^9.5.0
-        version: 9.5.0
-      mem-fs:
-        specifier: ^4.1.2
-        version: 4.1.2
-      mem-fs-editor:
-        specifier: ^11.1.4
-        version: 11.1.4(mem-fs@4.1.2)
 
   packages/template-standard:
     dependencies:

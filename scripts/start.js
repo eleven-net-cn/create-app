@@ -29,7 +29,7 @@ const debugAppDir = join(playgroundDir, debugAppName);
 const watchPaths = [
   join(__dirname, '../packages/create-app/src'),
   join(__dirname, '../packages/create-app-helper/src'),
-  join(__dirname, '../packages/template-renderer/src'),
+  join(__dirname, '../packages/create-app-renderer/src'),
   targetTemplateDir && join(__dirname, `../packages/${targetTemplateDir}`), // waiting for compiled
 ].filter(Boolean);
 

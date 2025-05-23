@@ -4,7 +4,7 @@ export default antfu({
   type: 'lib',
   ignores: [
     '.playground/',
-    'packages/template-renderer/README.md',
+    'packages/create-app-renderer/README.md',
   ],
   rules: {
     'style/semi': ['error', 'always'],

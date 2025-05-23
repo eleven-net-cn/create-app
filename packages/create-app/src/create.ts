@@ -25,7 +25,7 @@ import {
 import colors from 'picocolors';
 import { confirm, isCancel, select } from '@clack/prompts';
 import { installPackage } from '@antfu/install-pkg';
-import { commit, memFs, render2Memory } from '@e.fe/template-renderer';
+import { commit, memFs, render2Memory } from '@e.fe/create-app-renderer';
 
 import { argv } from './argv';
 import { Template } from './template';
