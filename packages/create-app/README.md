@@ -9,3 +9,15 @@ npm create @e.fe/app@latest
 
 npx @e.fe/create-app@latest
 ```
+
+![Usage](./usage.svg)
+
+### More
+
+```zsh
+# From Repo
+npm create @e.fe/app@latest from-repo <url>
+
+# From Template
+npm create @e.fe/app@latest -T <template>
+```

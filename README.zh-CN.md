@@ -35,10 +35,10 @@ npx @e.fe/create-app@latest
 
 ```zsh
 # 从仓库创建
-npm create @e.fe/app@latest from-repo https://github.com/xxx/xxx.git
+npm create @e.fe/app@latest from-repo <url>
 
 # 从模板创建
-npm create @e.fe/app@latest -T @scope/template-xxx
+npm create @e.fe/app@latest -T <template>
 ```
 
 ## 为什么
@@ -66,8 +66,8 @@ npm create @e.fe/app@latest -T @scope/template-xxx
   继承自 [tiged](https://github.com/tiged/tiged)，并增加额外的功能
 
   ```zsh
-  # 从 https://github.com/xxx/xxx.git 创建新项目
-  npm create @e.fe/app@latest from-repo https://github.com/xxx/xxx.git
+  # 从仓库创建新项目
+  npm create @e.fe/app@latest from-repo <url>
   ```
 
 - [x] `create-app` 具有 [yeoman](https://yeoman.io/) 类似的能力
@@ -77,11 +77,11 @@ npm create @e.fe/app@latest -T @scope/template-xxx
   模板可以独立创建、发布，维护在独立的仓库
 
   ```zsh
-  # 从 generator-xxx 创建 my-app
-  yo [xxx] my-app
+  # 从 generator 创建 my-app
+  yo <generator> my-app
 
   # 它们是类似的工作方式
 
-  # 从 @scope/template-xxx 创建 my-app
-  npm create @e.fe/app@latest -T [@scope/template-xxx]
+  # 从外部模板创建项目
+  npm create @e.fe/app@latest -T <template>
   ```

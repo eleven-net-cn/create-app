@@ -35,10 +35,10 @@ npx @e.fe/create-app@latest
 
 ```zsh
 # From Repo
-npm create @e.fe/app@latest from-repo https://github.com/xxx/xxx.git
+npm create @e.fe/app@latest from-repo <url>
 
 # From Template
-npm create @e.fe/app@latest -T @scope/template-xxx
+npm create @e.fe/app@latest -T <template>
 ```
 
 ## Why
@@ -66,8 +66,8 @@ I often need to quickly create various types of projects, so I developed this pr
   Inherited from [tiged](https://github.com/tiged/tiged), with additional features
 
   ```zsh
-  # Create a new project from https://github.com/xxx/xxx.git
-  npm create @e.fe/app@latest from-repo https://github.com/xxx/xxx.git
+  # Create a new project from the repository (<url>)
+  npm create @e.fe/app@latest from-repo <url>
   ```
 
 - [x] `create-app` has capabilities similar to [yeoman](https://yeoman.io/)
@@ -77,11 +77,11 @@ I often need to quickly create various types of projects, so I developed this pr
   Templates can be created and published independently, maintained in separate repositories
 
   ```zsh
-  # Create my-app from generator-xxx
-  yo [xxx] my-app
+  # Create my-app from the generator
+  yo <generator> my-app
 
   # They work in a similar way
 
-  # Create my-app from @scope/template-xxx
-  npm create @e.fe/app@latest -T [@scope/template-xxx]
+  # Create my-app from external template
+  npm create @e.fe/app@latest -T <template>
   ```
