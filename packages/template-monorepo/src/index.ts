@@ -1,33 +1,10 @@
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
-import { group, multiselect } from '@clack/prompts';
 import { defineTemplate } from '@e.fe/create-app-helper';
 import renderStandard from '@e.fe/template-standard';
+import prompts from './prompts';
 import type { TemplatePrompts } from './types';
-
-const prompts = () => group(
-  {
-    dirs: () => multiselect({
-      message: 'Please select:',
-      options: [
-        {
-          label: 'packages',
-          value: 'packages',
-        },
-        {
-          label: 'apps',
-          value: 'apps',
-        },
-      ],
-    }),
-  },
-  {
-    onCancel() {
-      process.exit(0);
-    },
-  },
-);
 
 export default defineTemplate(async context => {
   const { prompts: injectPrompts, render } = context;

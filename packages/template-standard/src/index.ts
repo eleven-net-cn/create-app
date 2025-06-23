@@ -1,37 +1,8 @@
 import { fileURLToPath } from 'node:url';
 import { dirname, resolve } from 'node:path';
 import { defineTemplate } from '@e.fe/create-app-helper';
-import { group, multiselect, select } from '@clack/prompts';
+import prompts from './prompts';
 import type { TemplatePrompts } from './types';
-
-const prompts = () =>
-  group(
-    {
-      appType: () => select({
-        message: 'Application type:',
-        initialValue: 'app',
-        options: [
-          { label: 'App', value: 'app' },
-          { label: 'Library', value: 'lib' },
-        ],
-      }),
-      features: () =>
-        multiselect({
-          message: 'Please select:',
-          options: [
-            { label: 'eslint', value: 'eslint', hint: 'https://eslint.org/' },
-            { label: 'commitlint', value: 'commitlint', hint: 'https://commitlint.js.org/' },
-            { label: 'commitizen', value: 'commitizen', hint: 'https://github.com/commitizen/cz-cli' },
-            { label: 'lint-staged', value: 'lint-staged', hint: 'https://github.com/lint-staged/lint-staged' },
-          ],
-        }),
-    },
-    {
-      onCancel() {
-        process.exit(0);
-      },
-    },
-  );
 
 export default defineTemplate(async context => {
   const { prompts: injectPrompts, render } = context;
