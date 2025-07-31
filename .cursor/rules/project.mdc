@@ -1,0 +1,12 @@
+---
+description:
+globs:
+alwaysApply: true
+---
+# 项目背景
+
+这是一个企业级的前端 CLI 脚手架项目
+
+- 使用 TypeScript 开发
+- CLI 运行时统一处理仓库的创建，根据用户的选择加载对应 template package，并运行 template 导出的脚本，由脚本进一步提供命令行 prompts 交互，根据用户的进一步选择生成后续的仓库文件或代码
+- 脚手架生成文件时，支持不同的合并或覆盖写入文件内容
