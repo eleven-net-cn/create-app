@@ -1,0 +1,16 @@
+import { fileURLToPath } from 'node:url';
+import { dirname, resolve } from 'node:path';
+import { defineTemplate } from '@e.fe/create-app-helper';
+import prompts from './prompts';
+import type { TemplatePrompts } from './types';
+
+export default defineTemplate(async context => {
+  const { prompts: injectPrompts, render } = context;
+  const {} = (injectPrompts as unknown as TemplatePrompts) ?? await prompts();
+
+  const templateDir = resolve(dirname(fileURLToPath(import.meta.url)), '../template');
+  const resolveDir = (dir: string) => resolve(templateDir, dir);
+
+  // Placeholder render call - replace with your actual template logic
+  render([]);
+});

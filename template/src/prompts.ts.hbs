@@ -1,0 +1,11 @@
+import { group } from '@clack/prompts';
+
+export default () =>
+  group(
+    {},
+    {
+      onCancel() {
+        process.exit(0);
+      },
+    },
+  );

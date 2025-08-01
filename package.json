@@ -5,6 +5,7 @@
   "author": "Eleven <master@eleven.net.cn>",
   "homepage": "",
   "scripts": {
+    "create:template": "plop template",
     "start": "node scripts/start.js",
     "start:cli": "pnpm build -F @e.fe/template-* && pnpm dlx tsx packages/create-app/src/bin.ts",
     "watch": "turbo watch build",
@@ -32,6 +33,7 @@
     "lerna": "^8.2.0",
     "minimist": "^1.2.8",
     "picocolors": "^1.1.1",
+    "plop": "^4.0.1",
     "tsup": "^8.3.5",
     "turbo": "^2.5.0",
     "typescript": "^5.7.3"
