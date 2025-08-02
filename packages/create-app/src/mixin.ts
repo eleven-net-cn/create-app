@@ -16,10 +16,15 @@ import { commit } from '@e.fe/create-app-renderer';
 
 import { argv } from './argv';
 import { renderFactory } from './render';
+import { checkNodeVersionRequirement, getRequiredNodeVersion } from './utils';
 
 const require = createRequire(import.meta.url);
 
 export async function mixin(options: MixinOptions) {
+  // Check Node.js version restrictions
+  const requiredVersion = getRequiredNodeVersion();
+  checkNodeVersionRequirement(requiredVersion);
+
   const {
     cwd: _cwd,
     template,

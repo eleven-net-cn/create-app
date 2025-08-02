@@ -29,11 +29,14 @@ import { commit, memFs } from '@e.fe/create-app-renderer';
 import { argv } from './argv';
 import { Template } from './template';
 import { renderFactory } from './render';
+import { checkNodeVersionRequirement, getRequiredNodeVersion } from './utils';
 
 const require = createRequire(import.meta.url);
 
 export async function create(options: CreateOptions) {
-  // TODO: Check Node.js version restrictions
+  // Check Node.js version restrictions
+  const requiredVersion = getRequiredNodeVersion();
+  checkNodeVersionRequirement(requiredVersion);
 
   const {
     mode,
