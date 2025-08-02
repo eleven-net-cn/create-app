@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.3](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app-renderer@1.0.0-rc.2...@e.fe/create-app-renderer@1.0.0-rc.3) (2025-08-02)
+
+
+### Features
+
+* Mixin-Mode, --mixin -T [@e](https://github.com/e).fe/template-standard ([578ff69](https://github.com/eleven-net-cn/create-app/commit/578ff69bd53e15167758f2d41252a614bd601697))
+
+
+
+
+
 # 1.0.0-rc.2 (2025-05-23)
 
 

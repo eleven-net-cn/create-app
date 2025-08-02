@@ -3,6 +3,25 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.14](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.13...@e.fe/create-app@1.0.0-rc.14) (2025-08-02)
+
+
+### Features
+
+* add template-vue package and update Vue project generation ([2497cf2](https://github.com/eleven-net-cn/create-app/commit/2497cf2049ec031aee2bee183aa616acb57d4998))
+* Mixin-Mode, --mixin -T [@e](https://github.com/e).fe/template-standard ([578ff69](https://github.com/eleven-net-cn/create-app/commit/578ff69bd53e15167758f2d41252a614bd601697))
+* Standalone template-react, after running the community cli command, add additional parts ([1f7677b](https://github.com/eleven-net-cn/create-app/commit/1f7677bc4877f04a338ed57bbf833e7d22597250))
+
+
+### Performance Improvements
+
+* check node version now, >= 16.0 [#3](https://github.com/eleven-net-cn/create-app/issues/3) ([4c528c4](https://github.com/eleven-net-cn/create-app/commit/4c528c487d807b99c35b5fac1f1d06454d0de3c0))
+* extract renderFactory from create.ts ([348e265](https://github.com/eleven-net-cn/create-app/commit/348e2651326fee775aa49f5c9b47fff0d75cf03f))
+
+
+
+
+
 # [1.0.0-rc.13](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.12...@e.fe/create-app@1.0.0-rc.13) (2025-05-23)
 
 

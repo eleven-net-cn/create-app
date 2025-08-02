@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.3](https://github.com/eleven-net-cn/create-app/compare/@e.fe/template-monorepo@1.0.0-rc.2...@e.fe/template-monorepo@1.0.0-rc.3) (2025-08-02)
+
+
+### Performance Improvements
+
+* ignore .turbo ([d332de7](https://github.com/eleven-net-cn/create-app/commit/d332de70cd7c86d104122266ccc080846428600e))
+* ignore .turbo ([4b4aaeb](https://github.com/eleven-net-cn/create-app/commit/4b4aaebcb1966a8bc3fb172680556f8ee816d26d))
+
+
+
+
+
 # [1.0.0-rc.2](https://github.com/eleven-net-cn/create-app/compare/@e.fe/template-monorepo@1.0.0-rc.1...@e.fe/template-monorepo@1.0.0-rc.2) (2025-05-21)
 
 **Note:** Version bump only for package @e.fe/template-monorepo
