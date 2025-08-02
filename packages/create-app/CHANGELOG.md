@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.15](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.14...@e.fe/create-app@1.0.0-rc.15) (2025-08-02)
+
+
+### Bug Fixes
+
+* add template deps in create-app ([b9c74be](https://github.com/eleven-net-cn/create-app/commit/b9c74be30bde6aa700cbd5b9676114a0666da0ac))
+
+
+
+
+
 # [1.0.0-rc.14](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.13...@e.fe/create-app@1.0.0-rc.14) (2025-08-02)
 
 
