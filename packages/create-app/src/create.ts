@@ -68,7 +68,7 @@ export async function create(options: CreateOptions) {
   // Support file: protocol, work locally
   if (templatePackage.match(/^file:/)) {
     // eslint-disable-next-line regexp/no-useless-quantifier
-    const localTemplatePath = resolve(cwd, templatePackage.match(/^file:(.*)?$/)?.[1] ?? '');
+    const localTemplatePath = resolve(process.cwd(), templatePackage.match(/^file:(.*)?$/)?.[1] ?? '');
     const { module, main } = JSON.parse(readFileSync(resolve(localTemplatePath, 'package.json'), 'utf-8'));
     const entry = module || main || 'index.js';
     templatePackage = resolve(localTemplatePath, entry);

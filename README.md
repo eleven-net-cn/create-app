@@ -35,11 +35,31 @@ npx @e.fe/create-app@latest
 
 ```zsh
 # From Repo
-npm create @e.fe/app@latest from-repo <url>
+npx @e.fe/create-app@latest from-repo <url>
 
 # From Template
-npm create @e.fe/app@latest -T <template>
+npx @e.fe/create-app@latest -T <template>
+
+# Mixin Mode - Apply template logic to current directory
+npx @e.fe/create-app@latest -T <template> --mixin
 ```
+
+## Mixin Mode
+
+Apply template logic to your current directory without creating a new project.
+
+```bash
+# Apply template to current directory
+npx @e.fe/create-app --template @e.fe/template-standard --mixin
+
+# Use local template file
+npx @e.fe/create-app --template file:./local-template --mixin
+```
+
+Useful for:
+- Adding new modules to existing projects
+- Applying configuration templates
+- Integrating development tools or scripts
 
 ## Why
 
@@ -50,38 +70,3 @@ Popular scaffolding tools have various issues, with the most important ones bein
 2. Some don't allow free combination of templates, only creating from fixed templates or downloading from repositories, making it difficult to maintain when we have multiple templates
 
 At work, I needed to develop a better scaffolding tool for the team, which was the initial motivation for writing this code.
-
-I often need to quickly create various types of projects, so I developed this project with the following goals:
-
-- [x] Maintain commonly used project templates and workflows
-
-- [x] Converge standard code specifications with `@e.fe/template-standard`
-
-- [x] Support direct calls to excellent community scaffolding tools like React, Vue, etc.
-
-  Maintaining our own work templates is the basic goal, but excellent community tools are also in our arsenal
-
-- [x] Support creating new projects from any project repository
-
-  Inherited from [tiged](https://github.com/tiged/tiged), with additional features
-
-  ```zsh
-  # Create a new project from the repository (<url>)
-  npm create @e.fe/app@latest from-repo <url>
-  ```
-
-- [x] `create-app` has capabilities similar to [yeoman](https://yeoman.io/)
-
-  template-xxx is equivalent to [yeoman generator](https://yeoman.io/authoring/), they both rely on capabilities provided by the upper layer
-
-  Templates can be created and published independently, maintained in separate repositories
-
-  ```zsh
-  # Create my-app from the generator
-  yo <generator> my-app
-
-  # They work in a similar way
-
-  # Create my-app from external template
-  npm create @e.fe/app@latest -T <template>
-  ```

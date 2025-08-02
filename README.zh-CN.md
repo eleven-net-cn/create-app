@@ -39,7 +39,27 @@ npm create @e.fe/app@latest from-repo <url>
 
 # 从模板创建
 npm create @e.fe/app@latest -T <template>
+
+# Mixin 模式 - 在当前目录应用模板逻辑
+npm create @e.fe/app@latest -T <template> --mixin
 ```
+
+## Mixin 模式
+
+在当前目录中应用模板包的逻辑，无需创建新项目。
+
+```bash
+# 在当前目录应用模板
+npx @e.fe/create-app --template @e.fe/template-standard --mixin
+
+# 使用本地模板文件
+npx @e.fe/create-app --template file:./local-template --mixin
+```
+
+适用于：
+- 向现有项目添加新的功能模块
+- 应用配置模板到当前项目
+- 在现有项目中集成特定的开发工具或脚本
 
 ## 为什么
 
@@ -50,38 +70,3 @@ npm create @e.fe/app@latest -T <template>
 2. 有的不能自由组合模板，而仅仅从固定模板创建或从仓库下载，当我们有多个模板时持续维护较为困难
 
 工作中，我需要为团队开发一款更棒的脚手架工具，这是最初写代码的起点。
-
-我常常需要迅速创建各类项目，因此，我开发了这个项目，主要达成了以下目标：
-
-- [x] 维护常用的项目模板和工作方式
-
-- [x] 收敛标准的代码规范 `@e.fe/template-standard`
-
-- [x] 支持直接调用社区优秀的 React、Vue 等脚手架工具创建项目
-
-  维护自己的工作模板是基础目标，但是，社区优秀的工具也在我的武器库中
-
-- [x] 支持从任意项目仓库创建新的项目
-
-  继承自 [tiged](https://github.com/tiged/tiged)，并增加额外的功能
-
-  ```zsh
-  # 从仓库创建新项目
-  npm create @e.fe/app@latest from-repo <url>
-  ```
-
-- [x] `create-app` 具有 [yeoman](https://yeoman.io/) 类似的能力
-
-  template-xxx 相当于 [yeoman generator](https://yeoman.io/authoring/)，它们都依靠上层下发的能力工作
-
-  模板可以独立创建、发布，维护在独立的仓库
-
-  ```zsh
-  # 从 generator 创建 my-app
-  yo <generator> my-app
-
-  # 它们是类似的工作方式
-
-  # 从外部模板创建项目
-  npm create @e.fe/app@latest -T <template>
-  ```

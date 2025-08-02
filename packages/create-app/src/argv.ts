@@ -19,6 +19,11 @@ export const extraCmdOptions: ExtraCmdOption<keyof UserArgv>[] = [
     alias: 'T',
     bracket: '@scope/template-pkg-name',
   },
+  {
+    name: 'mixin',
+    label: 'apply template logic to current directory',
+    type: 'boolean',
+  },
 ];
 
 export const argv = minimist<Answers>(process.argv.slice(2), {

@@ -88,7 +88,8 @@ export default function renderTemplate<Data = Record<string, unknown>>(options: 
       throw new Error('rootDir is required');
     }
 
-    return path.join(rootDir, item);
+    // ensure absolute path, even if rootDir is relative
+    return path.resolve(rootDir, item);
   });
 
   const toMergeJson = toAbsolutePath([

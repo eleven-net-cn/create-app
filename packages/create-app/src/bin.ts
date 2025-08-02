@@ -1,11 +1,12 @@
 import { execSync } from 'node:child_process';
-import type { Answers, CliOptions } from './types';
+import type { Answers, CliOptions, MixinOptions } from './types';
 import { Command } from 'commander';
 import leven from 'leven';
 import colors from 'picocolors';
 import { version } from '../package.json';
 import { extraCmdOptions } from './argv';
 import { create } from './create';
+import { mixin } from './mixin';
 import { app } from './app';
 import prompts from './prompts';
 
@@ -23,6 +24,15 @@ extraCmdOptions.forEach(item => {
 });
 
 program.action(async (options: CliOptions) => {
+  // mixin mode
+  if (options.mixin && options.template) {
+    await mixin({
+      template: options.template,
+      ...options,
+    } as MixinOptions);
+    return;
+  }
+
   const answers = await prompts() as Answers;
   const { appType, createType } = answers;
 
@@ -30,11 +40,13 @@ program.action(async (options: CliOptions) => {
   const { command, template } = createTypes.find(item => item.value === createType);
 
   if (command) {
+    // create mode, only run command
     execSync(command, {
       stdio: 'inherit',
       cwd: options.cwd,
     });
   } else if (template) {
+    // create mode
     await create({
       template,
       ...answers,

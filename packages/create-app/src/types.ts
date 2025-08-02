@@ -5,6 +5,13 @@ export interface CliOptions extends Required<UserArgv> {
   repo: string;
 }
 
+export interface MixinOptions extends CliOptions {
+  /** Template name, @scope/template-*, or local directory path */
+  template: string;
+  mode?: 'debug';
+  prompts?: Record<string, unknown>;
+}
+
 export interface ExtraCmdOption<Name = string> {
   /** parameter name */
   name: Name;
@@ -30,6 +37,8 @@ export interface UserArgv {
   template?: string;
   /** Package Manager */
   packageManager?: PackageManager;
+  /** Apply template logic to current directory */
+  mixin?: boolean;
 }
 
 export interface Answers extends Required<Omit<UserArgv, 'overwrite' | 'packageManager'>> {
