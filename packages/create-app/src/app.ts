@@ -25,29 +25,9 @@ export const app: Record<App, AppOption[]> = {
   ],
   [App.Vue]: [
     {
-      label: 'Create Vue',
-      value: 'create-vue',
-      command: 'npm create vue@latest',
-    },
-    {
-      label: 'Create Vite',
-      value: 'create-vite',
-      command: 'npm create vite@latest',
-    },
-    {
-      label: 'Create Vite Extra',
-      value: 'create-vite-extra',
-      command: 'npm create vite-extra@latest',
-    },
-    {
-      label: 'Create Nuxt',
-      value: 'create-nuxt',
-      command: 'npm create nuxt@latest',
-    },
-    {
-      label: 'Create Vue - Vue 2',
-      value: 'create-vue__legacy',
-      command: 'npm create vue@legacy',
+      label: 'Vue App',
+      value: 'from-template',
+      template: Template.Vue,
     },
   ],
   [App.Library]: [
