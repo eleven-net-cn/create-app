@@ -18,24 +18,9 @@ interface AppOption extends Option<string> {
 export const app: Record<App, AppOption[]> = {
   [App.React]: [
     {
-      label: 'Create Next App',
-      value: 'create-next-app',
-      command: 'npm create next-app@latest',
-    },
-    {
-      label: 'Create Vite',
-      value: 'create-vite',
-      command: 'npm create vite@latest',
-    },
-    {
-      label: 'Create Vite Extra',
-      value: 'create-vite-extra',
-      command: 'npm create vite-extra@latest',
-    },
-    {
-      label: 'Create React Router',
-      value: 'create-react-router',
-      command: 'npm create react-router@latest',
+      label: 'React App',
+      value: 'from-template',
+      template: Template.React,
     },
   ],
   [App.Vue]: [

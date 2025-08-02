@@ -65,14 +65,6 @@ export async function create(options: CreateOptions) {
     mkdirSync(projectRootDir, { recursive: true });
   }
 
-  if (!memFs.exists(pkgJsonPath)) {
-    memFs.writeJSON(pkgJsonPath, {
-      author: `${GIT_USER_NAME} <${GIT_USER_EMAIL}>`,
-      maintainers: [`${GIT_USER_NAME} <${GIT_USER_EMAIL}>`],
-      description: projectDesc,
-    });
-  }
-
   // Support file: protocol, work locally
   if (templatePackage.match(/^file:/)) {
     // eslint-disable-next-line regexp/no-useless-quantifier
@@ -87,6 +79,8 @@ export async function create(options: CreateOptions) {
   const templatePackagePaths = [
     resolve(createAppDir, '../..', templatePackage),
     resolve(createAppDir, 'node_modules', templatePackage),
+    // 添加 workspace 包路径支持
+    resolve(createAppDir, '../..', 'packages', templatePackage.replace('@e.fe/', ''), 'dist/index.js'),
   ];
   const existsTemplatePackage = templatePackagePaths.some(tplPath => existsSync(tplPath));
 
@@ -97,7 +91,16 @@ export async function create(options: CreateOptions) {
     });
   }
 
-  const { default: tplFn } = await import(templatePackage);
+  // 找到实际的模板包路径
+  let actualTemplatePackage = templatePackage;
+  for (const tplPath of templatePackagePaths) {
+    if (existsSync(tplPath)) {
+      actualTemplatePackage = tplPath;
+      break;
+    }
+  }
+
+  const { default: tplFn } = await import(actualTemplatePackage);
 
   if (typeof tplFn !== 'function') {
     throw new TypeError(`${templatePackage} must to export a render function`);
@@ -144,7 +147,15 @@ export async function create(options: CreateOptions) {
     isCancel(packageManager) && process.exit(0);
   }
 
+  // 创建或扩展 package.json
+  if (!memFs.exists(pkgJsonPath)) {
+    memFs.writeJSON(pkgJsonPath, {});
+  }
+
   memFs.extendJSON(pkgJsonPath, {
+    author: `${GIT_USER_NAME} <${GIT_USER_EMAIL}>`,
+    maintainers: [`${GIT_USER_NAME} <${GIT_USER_EMAIL}>`],
+    description: projectDesc,
     volta: {
       node: NODE_VERSION,
       [packageManager]: PACKAGE_MANAGER[packageManager],

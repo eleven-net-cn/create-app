@@ -1,0 +1,45 @@
+{
+  "name": "@e.fe/template-react",
+  "type": "module",
+  "version": "1.0.0-rc.1",
+  "description": "Template for react",
+  "author": "Eleven",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/eleven-net-cn/create-app",
+    "directory": "packages/template-react"
+  },
+  "bugs": {
+    "url": "https://github.com/eleven-net-cn/create-app/issues"
+  },
+  "keywords": [
+    "create-app",
+    "template react"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js"
+    }
+  },
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist",
+    "template"
+  ],
+  "scripts": {
+    "start": "tsup --watch",
+    "build": "tsup"
+  },
+  "dependencies": {
+    "@clack/prompts": "^0.10.0",
+    "@e.fe/create-app-helper": "workspace:*",
+    "@e.fe/template-standard": "workspace:*",
+    "picocolors": "^1.1.1"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
