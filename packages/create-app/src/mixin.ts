@@ -49,12 +49,16 @@ export async function mixin(options: MixinOptions) {
     templatePackage = resolve(localTemplatePath, entry);
   }
 
-  const templatePackagePaths = [
-    resolve(createAppDir, '../..', templatePackage),
-    resolve(createAppDir, 'node_modules', templatePackage),
-    resolve(createAppDir, '../..', 'packages', templatePackage.replace('@e.fe/', ''), 'dist/index.js'),
-  ];
-  const existsTemplatePackage = templatePackagePaths.some(tplPath => existsSync(tplPath));
+  // 智能检查模板包是否存在
+  let existsTemplatePackage = false;
+  try {
+    const templatePackageJsonPath = require.resolve(`${templatePackage}/package.json`);
+    const templatePackageDir = dirname(templatePackageJsonPath);
+    existsTemplatePackage = existsSync(templatePackageDir);
+  } catch (error: unknown) {
+    console.error(error);
+    existsTemplatePackage = false;
+  }
 
   if (!existsTemplatePackage) {
     console.log(`\nInstalling template package: ${templatePackage}\n`);

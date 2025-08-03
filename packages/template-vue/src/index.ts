@@ -13,7 +13,7 @@ const frameworkCommands: Record<TemplatePrompts['type'], (projectName: string) =
 };
 
 export default defineTemplate(async context => {
-  const { projectName, prompts: injectPrompts } = context;
+  const { cwd, projectName, prompts: injectPrompts } = context;
   const { type } = (injectPrompts as unknown as TemplatePrompts) ?? await prompts();
 
   // The community has done excellent work, so we will use their project generators first.
@@ -23,7 +23,7 @@ export default defineTemplate(async context => {
       const command = commandFn(projectName);
       execSync(command, {
         stdio: 'inherit',
-        cwd: process.cwd(),
+        cwd: cwd || process.cwd(),
       });
     // eslint-disable-next-line unused-imports/no-unused-vars
     } catch (error) {

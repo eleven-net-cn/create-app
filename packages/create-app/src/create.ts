@@ -79,12 +79,16 @@ export async function create(options: CreateOptions) {
 
   const render = renderFactory({ rootDir: projectRootDir, options });
   const createAppDir = dirname(require.resolve('@e.fe/create-app/package.json'));
-  const templatePackagePaths = [
-    resolve(createAppDir, '../..', templatePackage),
-    resolve(createAppDir, 'node_modules', templatePackage),
-    resolve(createAppDir, '../..', 'packages', templatePackage.replace('@e.fe/', ''), 'dist/index.js'),
-  ];
-  const existsTemplatePackage = templatePackagePaths.some(tplPath => existsSync(tplPath));
+
+  let existsTemplatePackage = false;
+  try {
+    const templatePackageJsonPath = require.resolve(`${templatePackage}/package.json`);
+    const templatePackageDir = dirname(templatePackageJsonPath);
+    existsTemplatePackage = existsSync(templatePackageDir);
+  } catch (error: unknown) {
+    console.error(error);
+    existsTemplatePackage = false;
+  }
 
   if (!existsTemplatePackage) {
     console.log(`\nInstalling template package: ${templatePackage}\n`);
