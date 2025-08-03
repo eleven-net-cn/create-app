@@ -80,13 +80,6 @@ watcher.on('ready', async () => {
   emptyFiles();
   await createApp();
 
-  console.log(colors.blue(`Now, Debug using: ${colors.magenta(targetTemplatePkg)}`));
-
-  console.log();
-  console.log(colors.blue('Template Prompts: '));
-  console.log(templatePrompts);
-  console.log();
-
   if (watchPaths.length > 0) {
     console.log();
     console.log(colors.blue('Watching: '));
@@ -95,6 +88,13 @@ watcher.on('ready', async () => {
     });
     console.log();
   }
+
+  console.log(colors.blue(`Now, Debug using: ${colors.magenta(targetTemplatePkg)}`));
+
+  console.log();
+  console.log(colors.blue('Template Prompts: '));
+  console.log(JSON.stringify(templatePrompts, null, 2));
+  console.log();
 });
 
 watcher.on('change', async filePath => {
