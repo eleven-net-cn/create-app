@@ -43,4 +43,9 @@ export default defineTemplate(async context => {
       ],
     },
   });
+
+  return {
+    skipInstallNow: true,
+    skipSelectPackageManager: true,
+  };
 });

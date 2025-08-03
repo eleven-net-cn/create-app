@@ -117,7 +117,11 @@ export async function create(options: CreateOptions) {
 
   let packageManager: PackageManager = 'pnpm';
 
-  if (argv.packageManager) {
+  // 检查是否跳过包管理器选择
+  if (tplFnRes?.skipSelectPackageManager === true) {
+    // 跳过选择，使用默认值
+    packageManager = 'pnpm';
+  } else if (argv.packageManager) {
     packageManager = argv.packageManager;
   } else if (prompts?.packageManager) {
     packageManager = prompts?.packageManager as PackageManager;
@@ -171,9 +175,14 @@ export async function create(options: CreateOptions) {
     await tplFnRes.afterRender();
   }
 
-  let installNow = prompts?.installNow;
+  let installNow: boolean | undefined | unknown;
 
-  if (prompts?.installNow === undefined) {
+  // 检查模板函数返回值中的 skipInstallNow 设置
+  if (tplFnRes?.skipInstallNow === true) {
+    installNow = false;
+  } else if (prompts?.installNow !== undefined) {
+    installNow = prompts.installNow;
+  } else {
     installNow = await confirm({
       message: 'Do you want to install now?',
       initialValue: true,

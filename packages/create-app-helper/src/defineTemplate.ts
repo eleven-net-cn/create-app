@@ -51,8 +51,10 @@ export interface TplContext<Options = Record<string, unknown>> {
 }
 
 export interface TemplateFnReturnType<Prompts = Record<string, unknown>> {
-  prompts: Prompts;
+  prompts?: Prompts;
   afterRender?: () => Promise<void> | void;
+  skipInstallNow?: boolean;
+  skipSelectPackageManager?: boolean;
 }
 
 export type TemplateFn<Prompts = Record<string, unknown>> = (ctx: TplContext) => Promise<TemplateFnReturnType<Prompts> | void> | TemplateFnReturnType<Prompts> | void;
