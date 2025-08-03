@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [1.0.0-rc.16](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.15...@e.fe/create-app@1.0.0-rc.16) (2025-08-03)
+
+
+### Bug Fixes
+
+* import templat pkg by package name ([09f3816](https://github.com/eleven-net-cn/create-app/commit/09f3816d01a208ef5569faafe1b0493e0401ab77))
+
+
+
+
+
 # [1.0.0-rc.15](https://github.com/eleven-net-cn/create-app/compare/@e.fe/create-app@1.0.0-rc.14...@e.fe/create-app@1.0.0-rc.15) (2025-08-02)
 
 
