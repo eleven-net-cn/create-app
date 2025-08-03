@@ -9,7 +9,7 @@
     "start": "node scripts/start.js",
     "start:cli": "pnpm build -F @e.fe/template-* && pnpm dlx tsx packages/create-app/src/bin.ts",
     "watch": "turbo watch build",
-    "build": "turbo run build --filter=!./xxx --filter=!./.playground",
+    "build": "turbo run build --filter=!./xxx --filter=!./.playground/*",
     "release": "pnpm build && lerna publish",
     "release:next": "pnpm build && lerna publish --dist-tag next",
     "lint": "eslint . --ignore-pattern 'packages/*/template/**/*'",
