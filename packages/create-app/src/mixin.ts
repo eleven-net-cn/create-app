@@ -52,7 +52,6 @@ export async function mixin(options: MixinOptions) {
   const templatePackagePaths = [
     resolve(createAppDir, '../..', templatePackage),
     resolve(createAppDir, 'node_modules', templatePackage),
-    // 添加 workspace 包路径支持
     resolve(createAppDir, '../..', 'packages', templatePackage.replace('@e.fe/', ''), 'dist/index.js'),
   ];
   const existsTemplatePackage = templatePackagePaths.some(tplPath => existsSync(tplPath));
@@ -64,16 +63,7 @@ export async function mixin(options: MixinOptions) {
     });
   }
 
-  // 找到实际的模板包路径
-  let actualTemplatePackage = templatePackage;
-  for (const tplPath of templatePackagePaths) {
-    if (existsSync(tplPath)) {
-      actualTemplatePackage = tplPath;
-      break;
-    }
-  }
-
-  const { default: tplFn } = await import(actualTemplatePackage);
+  const { default: tplFn } = await import(templatePackage);
 
   if (typeof tplFn !== 'function') {
     throw new TypeError(`${templatePackage} must to export a render function`);
