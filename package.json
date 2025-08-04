@@ -6,10 +6,13 @@
   "homepage": "",
   "scripts": {
     "create:template": "plop template",
+    "docs:start": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
     "start": "node scripts/start.js",
     "start:cli": "pnpm build -F @e.fe/template-* && pnpm dlx tsx packages/create-app/src/bin.ts",
     "watch": "turbo watch build",
-    "build": "turbo run build --filter=!./xxx --filter=!./.playground/*",
+    "build": "turbo run build --filter=!./xxx --filter=!./.playground/* --filter=!./docs",
     "release": "pnpm build && lerna publish",
     "release:next": "pnpm build && lerna publish --dist-tag next",
     "lint": "eslint . --ignore-pattern 'packages/*/template/**/*'",
@@ -36,7 +39,9 @@
     "plop": "^4.0.1",
     "tsup": "^8.3.5",
     "turbo": "^2.5.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "vitepress": "^1.0.0-rc.44",
+    "vue": "^3.4.0"
   },
   "lint-staged": {
     "{packages,docs}/**/*.{js,jsx,json,css,scss,less,html,md,yml}": [
