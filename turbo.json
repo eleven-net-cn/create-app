@@ -3,6 +3,8 @@
   "remoteCache": {
     "enabled": false
   },
+  "globalDependencies": ["**/.env.*local"],
+  "globalEnv": ["NODE_ENV"],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],

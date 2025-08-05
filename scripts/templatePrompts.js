@@ -9,13 +9,13 @@ export default {
   // packageManager: 'pnpm',
   // installNow: false,
 
-  // testing-react-app ☞ nr start --react
+  // nr start --react (testing-react-app)
   type: 'create-next-app',
   cwd: resolve(__dirname, '../.playground'),
   packageManager: 'pnpm',
   installNow: false,
 
-  // testing-vue-app ☞ nr start --vue
+  // nr start --vue (testing-vue-app)
   // type: 'create-nuxt',
   // cwd: resolve(__dirname, '../.playground'),
   // packageManager: 'pnpm',
