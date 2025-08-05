@@ -5,16 +5,16 @@
   "author": "Eleven <master@eleven.net.cn>",
   "homepage": "",
   "scripts": {
+    "start": "node scripts/start.js",
+    "start:cli": "pnpm build -F @e.fe/template-* && pnpm dlx tsx packages/create-app/src/bin.ts",
+    "watch": "turbo watch build",
+    "build": "turbo run build --filter=!./.playground/* --filter=!./docs",
+    "release": "pnpm build && lerna publish",
+    "release:next": "pnpm build && lerna publish --dist-tag next",
     "create:template": "plop template",
     "docs:start": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
-    "start": "node scripts/start.js",
-    "start:cli": "pnpm build -F @e.fe/template-* && pnpm dlx tsx packages/create-app/src/bin.ts",
-    "watch": "turbo watch build",
-    "build": "turbo run build --filter=!./xxx --filter=!./.playground/* --filter=!./docs",
-    "release": "pnpm build && lerna publish",
-    "release:next": "pnpm build && lerna publish --dist-tag next",
     "lint": "eslint . --ignore-pattern 'packages/*/template/**/*'",
     "lint:fix": "eslint . --fix --max-warnings=0 --no-warn-ignored --ignore-pattern 'packages/*/template/**/*'",
     "lint:fix.template": "eslint packages/*/template/**/* --fix --max-warnings=0 --no-warn-ignored",
@@ -64,7 +64,7 @@
     }
   },
   "volta": {
-    "node": "22.13.1",
+    "node": "22.18.0",
     "pnpm": "9.15.4"
   }
 }

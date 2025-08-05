@@ -15,8 +15,8 @@
       ],
       "program": "${workspaceFolder}/packages/create-app/src/bin.ts",
       "args": [
-        // "--cwd",
-        // ".playground"
+        "--cwd",
+        ".playground"
       ],
       "outFiles": ["${workspaceFolder}/**/*.js"],
       "console": "integratedTerminal"
