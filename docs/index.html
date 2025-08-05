@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>create-app - 企业级前端 CLI 脚手架</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="description" content="create-app 企业级的前端 CLI 脚手架，支持多种模板和灵活的配置选项">
+  <meta name="keywords" content="create-app, CLI, 脚手架, 前端, TypeScript, 模板">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="plugins/themes/vue.css">
+  <!-- 代码高亮样式 -->
+  <link rel="stylesheet" href="plugins/prism/prism-tomorrow.min.css">
+</head>
+<body>
+  <div id="app"></div>
+  <script>
+    window.$docsify = {
+      name: 'create-app',
+      repo: 'https://github.com/eleven-net-cn/create-app',
+      loadSidebar: true,
+      subMaxLevel: 2,
+      auto2top: true,
+      homepage: 'index.md',
+      coverpage: true,
+
+      // 搜索配置
+      search: {
+        maxAge: 86400000,
+        paths: 'auto',
+        placeholder: '搜索文档...',
+        noData: '找不到结果',
+        depth: 6
+      },
+
+      // 字数统计
+      count: {
+        countable: true,
+        position: 'top',
+        margin: '10px',
+        float: 'right',
+        fontsize: '0.9em',
+        color: 'rgb(90,90,90)',
+        language: 'chinese',
+        localization: {
+          words: '字',
+          minute: '分钟'
+        },
+        isExpected: true
+      },
+
+      // 复制代码按钮
+      copyCode: {
+        buttonText: '复制',
+        errorText: '错误',
+        successText: '已复制'
+      },
+
+      // 分页导航
+      pagination: {
+        previousText: '上一章节',
+        nextText: '下一章节',
+        crossChapter: true,
+        crossChapterText: true,
+      },
+
+      // 代码高亮
+      highlight: [
+        'bash',
+        'javascript',
+        'typescript',
+        'json',
+        'yaml',
+        'markdown'
+      ],
+
+      // 主题配置
+      themeColor: '#42b883',
+
+      // 插件配置
+      plugins: [
+        // 搜索插件
+        function(hook, vm) {
+          hook.beforeEach(function(html) {
+            // 在每个页面加载前执行
+            return html;
+          });
+
+          hook.afterEach(function(html, next) {
+            // 在每个页面加载后执行
+            next(html);
+          });
+        }
+      ]
+    }
+  </script>
+
+  <!-- Docsify 核心 -->
+  <script src="plugins/docsify/docsify.min.js"></script>
+
+    <!-- 搜索插件 -->
+  <script src="plugins/search/search.min.js"></script>
+
+  <!-- 字数统计插件 -->
+  <script src="plugins/count/countable.min.js"></script>
+
+  <!-- 复制代码插件 -->
+  <script src="plugins/copy-code/docsify-copy-code.min.js"></script>
+
+  <!-- 分页导航插件 -->
+  <script src="plugins/pagination/docsify-pagination.min.js"></script>
+
+  <!-- 代码高亮插件 -->
+  <script src="plugins/prism/prism-bash.min.js"></script>
+  <script src="plugins/prism/prism-javascript.min.js"></script>
+  <script src="plugins/prism/prism-typescript.min.js"></script>
+  <script src="plugins/prism/prism-json.min.js"></script>
+  <script src="plugins/prism/prism-yaml.min.js"></script>
+  <script src="plugins/prism/prism-markdown.min.js"></script>
+</body>
+</html>

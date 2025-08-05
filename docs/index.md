@@ -1,35 +1,79 @@
----
-layout: home
-hero:
-  name: create-app
-  text: 强大的项目脚手架工具
-  tagline: 支持模板积木式自由组合，快速创建项目
-  actions:
-    - theme: brand
-      text: 快速开始
-      link: /guide/
-    - theme: alt
-      text: 查看 GitHub
-      link: https://github.com/eleven-net-cn/create-app
-      target: _blank
+## 快速开始
 
-features:
-  - icon: ⚡
-    title: 本地热重载模板调试
-    details: 开发模板时无需重复创建项目，支持实时预览和调试，提高开发效率
-  - icon: 🎨
-    title: 模板包自由组合
-    details: 支持多个模板包的组合使用，创建复杂的项目结构，满足各种开发需求
-  - icon: 🔄
-    title: 模板包相互调用
-    details: 模板包之间可以相互引用和组合，提高代码复用性，避免重复开发
-  - icon: 🚀
-    title: 内存组装，一次性写入
-    details: 所有模板在内存中组装完成后再写入磁盘，确保文件一致性和性能
-  - icon: 🛠️
-    title: 灵活的渲染引擎
-    details: 基于 EJS 的强大模板引擎，支持双重渲染机制和智能文件处理
-  - icon: 📦
-    title: 丰富的模板包生态
-    details: 基于独立的 npm 包系统，每个模板都是可独立发布和维护的包
----
+### 创建新项目
+
+```bash
+# 使用默认模板创建项目
+npm create @e.fe/app@latest my-project
+
+# 使用指定模板创建项目
+npm create @e.fe/app@latest my-project -T @e.fe/template-react
+
+# 使用本地模板
+npm create @e.fe/app@latest my-project -T file:./my-template
+
+# 指定包管理器
+npm create @e.fe/app@latest my-project -P npm
+
+# 允许覆盖已存在的目录
+npm create @e.fe/app@latest my-project --overwrite
+
+# 指定工作目录
+npm create @e.fe/app@latest my-project --cwd /path/to/directory
+```
+
+### 向现有项目添加配置
+
+```bash
+# 向现有项目添加开发工具配置
+npx @e.fe/create-app@latest -T @e.fe/template-standard --mixin
+
+# 使用本地模板包
+npx @e.fe/create-app@latest -T file:./my-template --mixin
+
+# 指定包管理器
+npx @e.fe/create-app@latest -T @e.fe/template-standard --mixin -P yarn
+```
+
+## 命令行选项
+
+| 选项 | 类型 | 默认值 | 描述 |
+|------|------|--------|------|
+| `-V, --version` | - | - | 显示版本信息 |
+| `--cwd <path>` | string | 当前目录 | 指定工作目录 |
+| `--overwrite` | boolean | false | 允许覆盖已存在的目录 |
+| `-P, --packageManager` | string | pnpm | 指定包管理器 (pnpm/npm/yarn) |
+| `-T, --template` | string | - | 指定模板包 |
+| `--mixin` | boolean | false | 混合模式，应用到现有项目 |
+| `-h, --help` | - | - | 显示帮助信息 |
+
+### 子命令
+
+| 命令 | 别名 | 描述 |
+|------|------|------|
+| `tiged <src>` | `from-repo` | 从目标仓库生成新项目 |
+
+## 使用第三方模板包
+
+```bash
+# 使用 npm 包
+npm create @e.fe/app@latest -T my-template-package
+
+# 使用本地路径
+npm create @e.fe/app@latest -T file:./local-template
+
+# 从 GitHub 仓库生成项目
+npm create @e.fe/app@latest tiged username/repo-name
+
+# 从 GitHub 仓库生成项目（使用别名）
+npm create @e.fe/app@latest from-repo username/repo-name
+```
+
+## 为什么开发 create-app
+
+流行的脚手架工具存在各种问题，最重要的有以下几点：
+
+1. **基本都不能热更新调试模板**，模板的测试较为浪费时间
+2. **有的不能自由组合模板**，而仅仅从固定模板创建或从仓库下载，当我们有多个模板时持续维护较为困难
+
+工作中，我需要为团队开发一款更棒的脚手架工具，这是最初写代码的起点。
