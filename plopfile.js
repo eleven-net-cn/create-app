@@ -25,27 +25,27 @@ export default function (plop) {
       {
         type: 'add',
         path: 'packages/template-{{templateName}}/package.json',
-        templateFile: 'template/package.json.hbs',
+        templateFile: '.template/package.json.hbs',
       },
       {
         type: 'add',
         path: 'packages/template-{{templateName}}/src/index.ts',
-        templateFile: 'template/src/index.ts.hbs',
+        templateFile: '.template/src/index.ts.hbs',
       },
       {
         type: 'add',
         path: 'packages/template-{{templateName}}/src/prompts.ts',
-        templateFile: 'template/src/prompts.ts.hbs',
+        templateFile: '.template/src/prompts.ts.hbs',
       },
       {
         type: 'add',
         path: 'packages/template-{{templateName}}/src/types.ts',
-        templateFile: 'template/src/types.ts.hbs',
+        templateFile: '.template/src/types.ts.hbs',
       },
       {
         type: 'add',
         path: 'packages/template-{{templateName}}/README.md',
-        templateFile: 'template/README.md.hbs',
+        templateFile: '.template/README.md.hbs',
       },
       {
         type: 'add',

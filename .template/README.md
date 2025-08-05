@@ -21,7 +21,7 @@ packages/template-{name}/
 │   ├── index.ts         # 主入口文件，包含基础的 export 函数结构
 │   ├── prompts.ts       # 交互式提示配置
 │   └── types.ts         # TypeScript 类型定义
-├── template/            # 模板文件目录
+├── .template/           # 模板文件目录
 │   └── .gitkeep        # 保持目录结构
 └── README.md
 ```
@@ -40,4 +40,4 @@ packages/template-{name}/
 1. `src/index.ts` 中的模板逻辑
 2. `src/prompts.ts` 中的交互选项
 3. `src/types.ts` 中的类型定义
-4. `template/` 目录中的实际模板文件
+4. `.template/` 目录中的实际模板文件
