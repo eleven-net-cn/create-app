@@ -12,6 +12,10 @@ Efficient Modern Scaffolding
 <b>English</b> | <a href="./README.zh-CN.md">简体中文</a>
 </p>
 
+## Documentation
+
+https://create-app.eleven.net.cn/
+
 ## Features
 
 - :zap: Local hot-reload template debugging

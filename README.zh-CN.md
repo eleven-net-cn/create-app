@@ -12,6 +12,10 @@
 <a href="./README.md">English</a> | <b>简体中文</b>
 </p>
 
+## 文档
+
+https://create-app.eleven.net.cn/
+
 ## 特性
 
 - :zap: 本地热更新调试模板
