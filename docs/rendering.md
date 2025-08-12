@@ -4,7 +4,7 @@
 
 ## 核心特性
 
-### 内存文件系统
+### 内存文件
 
 渲染引擎使用 `mem-fs` 和 `mem-fs-editor` 在内存中处理所有文件操作，确保文件一致性：
 
@@ -16,7 +16,7 @@ const store = createMemFs();
 const memFs = createEditor(store);
 ```
 
-### 双重渲染机制
+### 渲染机制
 
 #### 1. 文本文件 EJS 处理
 
@@ -225,7 +225,7 @@ await memFs.commit();
 
 ## 使用方式
 
-### 直接渲染到磁盘
+### 渲染函数
 
 ```typescript
 import { render } from '@e.fe/create-app-renderer';
@@ -246,7 +246,7 @@ await render([
 ]);
 ```
 
-### 分步渲染
+### 分步执行
 
 ```typescript
 import { commit, render2Memory } from '@e.fe/create-app-renderer';
@@ -283,39 +283,9 @@ await commit({ environment: 'production' });
 <% } %>
 ```
 
-### 循环渲染
+### 合并渲染
 
-支持数组和对象的循环渲染：
-
-```ejs
-<% dependencies.forEach(function(dep) { %>
-import <%= dep.name %> from '<%= dep.package %>';
-<% }); %>
-
-<% Object.keys(scripts).forEach(function(script) { %>
-"<%= script %>": "<%= scripts[script] %>",
-<% }); %>
-```
-
-### 自定义助手函数
-
-可以注册自定义的 EJS 助手函数：
-
-```typescript
-import ejs from 'ejs';
-
-ejs.filters.uppercase = function (str) {
-  return str.toUpperCase();
-};
-
-ejs.filters.kebabCase = function (str) {
-  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
-};
-```
-
-### 多数据文件支持
-
-支持为同一个 `.ejs` 文件提供多个 `.data.mjs` 文件：
+支持为同一个 `.ejs` 后缀文件提供多个 `.data.mjs` 文件，渲染过程中将会先合并收集数据，在最后阶段统一渲染。
 
 ```typescript
 // main.ts.data.mjs

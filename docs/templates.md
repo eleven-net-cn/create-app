@@ -2,32 +2,41 @@
 
 `create-app` 的模板系统基于独立的 npm 包实现，每个模板都是一个完整的包，通过 `defineTemplate()` 函数定义渲染逻辑。这种设计实现了高度的模块化和可扩展性。
 
-## 架构设计
+## 模板设计
 
 ### 模板包结构
 
 一个标准的模板包包含以下结构：
 
-```
+```bash
 @e.fe/template-xxx/
-├── package.json          # 模板包配置
-├── src/
+├── src/              # 模板脚本
 │   ├── index.ts          # 模板主逻辑（使用 defineTemplate）
-│   ├── prompts.ts        # 交互式提示配置
+│   ├── prompts.ts        # 命令行交互
 │   └── types.ts          # 类型定义
-├── template/             # 模板文件目录
+├── template/         # 模板文件目录
 │   ├── _gitignore        # Git 忽略文件（会被重命名为 .gitignore）
-│   ├── package.json.ejs  # 项目配置文件模板
-│   └── src/              # 源代码模板
-└── dist/                 # 构建输出目录
+│   ├── ...               # 各类模板文件或预置
+│   └── package.json
+├── README.md
+└── package.json
 ```
 
-### 核心设计原则
+### 企业级模板设计
 
-1. **独立性**：每个模板包都是独立的 npm 包，可以单独发布和维护
-2. **可组合性**：模板包之间可以相互引用和组合
-3. **类型安全**：完整的 TypeScript 支持，提供类型检查和智能提示
-4. **可扩展性**：支持自定义渲染逻辑和文件处理策略
+```bash
+@e.fe/template-xxx/
+├── src/              # 模板脚本
+│   ├── index.ts
+│   ├── prompts.ts
+│   └── types.ts
+├── template/         # 模板文件目录
+│   ├── base/             # 基础项目文件
+│   ├── preset/           # 预置的各类解决方案（如：埋点上报、异常监控、登录 SDK、JSBridge 等）
+│   └── solution/         # 业务解决方案（如：C 端模板、Admin 管理后台等），允许预置 preset 中的若干配置方案
+├── README.md
+└── package.json
+```
 
 ## 核心概念
 
@@ -106,7 +115,7 @@ await commit({ environment: 'production' });
 - **内存操作**：所有文件操作在内存中完成，最后一次性写入磁盘
 - **类型安全**：完整的 TypeScript 类型支持
 
-## 交互式提示系统
+## 模板内的命令行交互
 
 每个模板可以定义自己的交互式提示，收集用户输入：
 
@@ -250,110 +259,6 @@ export default defineTemplate(async context => {
     prompts: {
       features: ['eslint', 'commitlint', 'husky']
     }
-  });
-});
-```
-
-## 企业级特性
-
-### 类型安全
-
-完整的 TypeScript 支持，提供编译时类型检查：
-
-```typescript
-interface TemplatePrompts {
-  framework: 'react' | 'vue' | 'vanilla';
-  features: string[];
-  projectName: string;
-}
-
-export default defineTemplate(async context => {
-  const { prompts: injectPrompts } = context;
-  const userPrompts = injectPrompts as TemplatePrompts;
-
-  // 类型安全的模板逻辑
-  if (userPrompts.framework === 'react') {
-    render('template/react/');
-  }
-});
-```
-
-### 错误处理
-
-完善的错误处理机制：
-
-```typescript
-export default defineTemplate(async context => {
-  try {
-    const { render, projectName } = context;
-
-    if (!projectName) {
-      throw new Error('项目名称是必需的');
-    }
-
-    render('template/');
-  } catch (error) {
-    console.error('模板渲染失败:', error.message);
-    process.exit(1);
-  }
-});
-```
-
-### 生命周期钩子
-
-支持模板渲染的生命周期管理：
-
-```typescript
-export default defineTemplate(async context => {
-  // 渲染逻辑
-  render('template/');
-
-  return {
-    skipInstallNow: false,
-    afterRender: async () => {
-      // 后处理逻辑
-      console.log('✅ 项目创建完成！');
-    }
-  };
-});
-```
-
-## 扩展性设计
-
-### 自定义渲染逻辑
-
-支持复杂的自定义渲染逻辑：
-
-```typescript
-export default defineTemplate(async context => {
-  const { render, prompts: injectPrompts } = context;
-  const { framework, features } = injectPrompts ?? await prompts();
-
-  // 条件渲染
-  render([
-    'template/base/',
-    framework === 'react' && 'template/react/',
-    framework === 'vue' && 'template/vue/',
-    features.includes('typescript') && 'template/typescript/',
-    features.includes('testing') && 'template/testing/'
-  ].filter(Boolean));
-});
-```
-
-### 数据驱动渲染
-
-支持数据驱动的模板渲染：
-
-```typescript
-export default defineTemplate(async context => {
-  const { render } = context;
-
-  // 从配置文件读取渲染数据
-  const config = await loadConfig();
-
-  render('template/', {
-    ...config,
-    timestamp: new Date().toISOString()
   });
 });
 ```

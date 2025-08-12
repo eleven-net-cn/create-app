@@ -1,4 +1,5 @@
-- [**开始使用**](index.md)
+- [**简介**](index.md)
+- [**开始使用**](usage.md)
 - [**核心特性**](features.md)
 - [**渲染引擎**](rendering.md)
 - [**模板系统**](templates.md)
