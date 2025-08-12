@@ -73,4 +73,4 @@ Popular scaffolding tools have various issues, with the most important ones bein
 
 2. Some don't allow free combination of templates, only creating from fixed templates or downloading from repositories, making it difficult to maintain when we have multiple templates
 
-At work, I needed to develop a better scaffolding tool for the team, which was the initial motivation for writing this code.
+At work, I needed to develop a better scaffolding tool for the team, which was the initial motivation.
